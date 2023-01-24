@@ -1,4 +1,4 @@
-baseURL = 'https://nicolasfarabegoli.it/slides-template/'
+baseURL = 'https://nicolasfarabegoli.it/pulverization-introduction/'
 languageCode = 'en-us'
 title = 'Slide template'
 disableKinds = ["sitemap", "RSS"]

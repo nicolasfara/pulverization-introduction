@@ -1,8 +1,12 @@
 +++
-title = "My presentation"
+title = "Pulverization introduction"
 outputs = ["Reveal"]
 +++
 
-# Hello world
+# Pulverization
 
-This is my first slide.
+&#8212;
+
+### A kotlin multiplatform frarmework
+
+Nicolas Farabegoli
