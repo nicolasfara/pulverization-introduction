@@ -59,7 +59,7 @@ The framework is composed of three main packages:
 - **Core**: defines the pulverization concepts and interfaces needed to implement a pulverized system
 - **Pulverization platform**: manages all the logic needed to implement a pulverized system
 - **RabbitMQ platform**: implementation of a communicator based on RabbitMQ
-- **Other communicator** ...
+- **Other communicator** work in progress...
 {{% /col %}}
 
 {{< col >}}
