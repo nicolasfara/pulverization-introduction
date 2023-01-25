@@ -7,6 +7,6 @@ outputs = ["Reveal"]
 
 &#8212;
 
-### A kotlin multiplatform frarmework
+### A kotlin multiplatform framework
 
 Nicolas Farabegoli

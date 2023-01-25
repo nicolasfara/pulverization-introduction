@@ -37,7 +37,7 @@ A _Logical device_ broken down into five **components**:
 {{% col %}}
 Fundamentals requirements of the framework are:
 
-- **Multiplatform**: the framework should be able to run on any platform (e.g. Android, iOS, Linux, Windows, embedded systems, etc.)
+- **Multiplatform**: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)
 - **Multi-protocol**: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)
 - **Clean API**: the framework should be easy to use and understand
 
@@ -76,6 +76,10 @@ graph TD
 
 # Configuration DSL
 
+The configuration in the framework defines how many logical devices are present in the system and defines how a logical device is composed.
+
+This configuration can be achieved using the following DSL:
+
 ```kotlin
 val config = pulverizationConfig {
     logicalDevice("smartphone") {
@@ -91,6 +95,9 @@ val config = pulverizationConfig {
 ---
 
 # Platform DSL
+
+This DSL enables the user to configure the actual platform specifying the concrete implementation for each component and defining which communicator
+use, in a pure **declarative** fashion.
 
 ```kotlin
 val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
@@ -132,10 +139,11 @@ The first demo shows how to "pulverize" a simple device for regulating the moist
 
 ## Multiple device multiple components
 
-This demo tries to emulate the "hot-warm-cold" game using two smartphone and one antenna.
+This demo tries to emulate the _hot-warm-cold_ game using two smartphone and one antenna.
 
-The two smartphone try to find the antenna measuring the distance between them and the antenna; moreover, the smartphones can communicate with each
-other sharing their distance from the antenna.
+Smartphones search for the antenna by measuring its **distance** (via Bluetooth RSSI) and sharing that value with other smartphones.
+The raspberry receives information about the distances of smartphones and emits light that is as bright the closer the devices are and less bright the
+farther away they are. In this case, the actuator for the raspberry is an LED.
 
 {{< multicol >}}
 {{< col >}}
@@ -143,7 +151,7 @@ other sharing their distance from the antenna.
 {{< /col >}}
 
 {{< col >}}
-{{< figure src="images/demo-2-physical.svg" width="70%" >}}
+{{< figure src="images/demo-2-physical.svg" width="60%" >}}
 {{< /col >}}
 {{< /multicol >}}
 
@@ -151,6 +159,6 @@ other sharing their distance from the antenna.
 
 # References
 
-- Pulverization framework [https://github.com/nicolasfara/pulverization-framework](https://github.com/nicolasfara/pulverization-framework)
-- Demo 1 [https://github.com/nicolasfara/pulverization-moisture-soil](https://github.com/nicolasfara/pulverization-moisture-soil)
-- Demo 2 [https://github.com/nicolasfara/pulverization-hot-warm-cold](https://github.com/nicolasfara/pulverization-hot-warm-cold)
+- [Pulverization framework] [https://github.com/nicolasfara/pulverization-framework](https://github.com/nicolasfara/pulverization-framework)
+- [Demo 1] [https://github.com/nicolasfara/pulverization-moisture-soil](https://github.com/nicolasfara/pulverization-moisture-soil)
+- [Demo 2] [https://github.com/nicolasfara/pulverization-hot-warm-cold](https://github.com/nicolasfara/pulverization-hot-warm-cold)
