@@ -35,7 +35,7 @@ A _Logical device_ broken down into five **components**:
 
 {{< multicol >}}
 {{% col %}}
-Fundamentals requirements of the framework are:
+Fundamental requirements of the framework are:
 
 - **Multiplatform**: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)
 - **Multi-protocol**: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)
