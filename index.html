@@ -1,32 +1,169 @@
-<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hugo 0.107.0"><meta charset="utf-8"><title>Pulverization introduction</title><meta name="author" content="Nicolas Farabegoli"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/css/reset.css"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/css/reveal.css"><link rel="stylesheet" href="/pulverization-introduction/css/custom-theme.min.da90c6b53a06df1df0af761ed122d4f6ff1698fcf363a8e9c46a877068f38cb7.css" id="theme"><link rel="stylesheet" href="/pulverization-introduction/highlight-js/github-gist.min.css"><link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1 id="pulverization">Pulverization</h1><p>—</p><h3 id="a-kotlin-multiplatform-framework">A kotlin multiplatform framework</h3><p>Nicolas Farabegoli</p></section><section><h1 id="pulverization">Pulverization</h1><p>The infrastructures providing networking and computing services are complex, layered and heterogeneous (e.g. edge–fog–cloud interplay).</p><p>The implementation of a device’s logic should be largely <strong>independent</strong> from the specific application deployment.</p><p>The global system behavior of application services gets broken into smaller <strong>computational pieces</strong> that are <strong>continuously</strong> executed across the
-available hosts.</p><div class="multiCol"><div class="col"><p>A <em>Logical device</em> broken down into five <strong>components</strong>:</p><ul><li><em>Behaviour</em></li><li><em>Communication</em></li><li><em>State</em></li><li><em>Sensors</em></li><li><em>Actuators</em></li></ul></div><div class="col"><figure><img src="images/futureinternet-12-00203-g002.webp"></figure></div></div></section><section><h1 id="the-framework">The Framework</h1><div class="multiCol"><div class="col"><p>Fundamental requirements of the framework are:</p><ul><li><strong>Multiplatform</strong>: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)</li><li><strong>Multi-protocol</strong>: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)</li><li><strong>Clean API</strong>: the framework should be easy to use and understand</li></ul></div><div class="col"><figure><img src="images/Kotlin-logo.png"></figure></div></div></section><section><h1 id="framework-architecture">Framework Architecture</h1><div class="multiCol"><div class="col"><p>The framework is composed of three main packages:</p><ul><li><strong>Core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li><li><strong>Pulverization platform</strong>: manages all the logic needed to implement a pulverized system</li><li><strong>RabbitMQ platform</strong>: implementation of a communicator based on RabbitMQ</li><li><strong>Other communicator</strong> work in progress…</li></ul></div><div class="col"><div class="mermaid" data-processed="true" pre-rendered="true"><svg viewBox="0 0 206.171875 230" style="max-width: 206.171875px;" aria-labelledby="chart-title-mermaid-1675329744251 chart-desc-mermaid-1675329744251" role="img" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="100%" id="mermaid-1675329744251"><title id="chart-title-mermaid-1675329744251"></title><desc id="chart-desc-mermaid-1675329744251"></desc><style>#mermaid-1675329744251 {font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-1675329744251 .error-icon{fill:#552222;}#mermaid-1675329744251 .error-text{fill:#552222;stroke:#552222;}#mermaid-1675329744251 .edge-thickness-normal{stroke-width:2px;}#mermaid-1675329744251 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1675329744251 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1675329744251 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1675329744251 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1675329744251 .marker{fill:#333333;stroke:#333333;}#mermaid-1675329744251 .marker.cross{stroke:#333333;}#mermaid-1675329744251 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1675329744251 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-1675329744251 .cluster-label text{fill:#333;}#mermaid-1675329744251 .cluster-label span{color:#333;}#mermaid-1675329744251 .label text,#mermaid-1675329744251 span{fill:#333;color:#333;}#mermaid-1675329744251 .node rect,#mermaid-1675329744251 .node circle,#mermaid-1675329744251 .node ellipse,#mermaid-1675329744251 .node polygon,#mermaid-1675329744251 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1675329744251 .node .label{text-align:center;}#mermaid-1675329744251 .node.clickable{cursor:pointer;}#mermaid-1675329744251 .arrowheadPath{fill:#333333;}#mermaid-1675329744251 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-1675329744251 .flowchart-link{stroke:#333333;fill:none;}#mermaid-1675329744251 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-1675329744251 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-1675329744251 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-1675329744251 .cluster text{fill:#333;}#mermaid-1675329744251 .cluster span{color:#333;}#mermaid-1675329744251 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-1675329744251 :root{--mermaid-font-family:Inconsolata;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g style="opacity: 1;" id="L-A-B" class="edgePath LS-A LE-B"><path style="fill:none" marker-end="url(#arrowhead13)" d="M110.359375,46L110.359375,50.166666666666664C110.359375,54.333333333333336,110.359375,62.666666666666664,110.359375,71C110.359375,79.33333333333333,110.359375,87.66666666666667,110.359375,91.83333333333333L110.359375,96" class="path"></path><defs><marker orient="auto" markerHeight="6" markerWidth="8" markerUnits="strokeWidth" refY="5" refX="9" viewBox="0 0 10 10" id="arrowhead13"><path style="fill: #333" d="M 0 0 L 0 0 L 0 0 z"></path></marker></defs></g><g style="opacity: 1;" id="L-B-C" class="edgePath LS-B LE-C"><path style="fill:none" marker-end="url(#arrowhead14)" d="M86.02911931818181,134L80.69353693181817,138.16666666666666C75.35795454545455,142.33333333333334,64.68678977272727,150.66666666666666,59.35120738636363,159C54.015625,167.33333333333334,54.015625,175.66666666666666,54.015625,179.83333333333334L54.015625,184" class="path"></path><defs><marker orient="auto" markerHeight="6" markerWidth="8" markerUnits="strokeWidth" refY="5" refX="9" viewBox="0 0 10 10" id="arrowhead14"><path style="fill: #333" d="M 0 0 L 0 0 L 0 0 z"></path></marker></defs></g><g style="opacity: 1;" id="L-B-D" class="edgePath LS-B LE-D"><path style="fill:none" marker-end="url(#arrowhead15)" d="M134.6896306818182,134L140.02521306818184,138.16666666666666C145.36079545454547,142.33333333333334,156.03196022727272,150.66666666666666,161.36754261363637,159C166.703125,167.33333333333334,166.703125,175.66666666666666,166.703125,179.83333333333334L166.703125,184" class="path"></path><defs><marker orient="auto" markerHeight="6" markerWidth="8" markerUnits="strokeWidth" refY="5" refX="9" viewBox="0 0 10 10" id="arrowhead15"><path style="fill: #333" d="M 0 0 L 0 0 L 0 0 z"></path></marker></defs></g></g><g class="edgeLabels"><g style="opacity: 1;" transform="" class="edgeLabel"><g class="label" transform="translate(0,0)"><rect height="0" width="0" ry="0" rx="0"></rect><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span style="" class="edgeLabel L-LS-A' L-LE-B" id="L-L-A-B"></span></div></foreignObject></g></g><g style="opacity: 1;" transform="" class="edgeLabel"><g class="label" transform="translate(0,0)"><rect height="0" width="0" ry="0" rx="0"></rect><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span style="" class="edgeLabel L-LS-B' L-LE-C" id="L-L-B-C"></span></div></foreignObject></g></g><g style="opacity: 1;" transform="" class="edgeLabel"><g class="label" transform="translate(0,0)"><rect height="0" width="0" ry="0" rx="0"></rect><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span style="" class="edgeLabel L-LS-B' L-LE-D" id="L-L-B-D"></span></div></foreignObject></g></g></g><g class="nodes"><g style="opacity: 1;" transform="translate(110.359375,27)" id="flowchart-A-12" class="node default"><rect class="label-container" height="38" width="54.6875" y="-19" x="-27.34375" ry="0" rx="0"></rect><g transform="translate(0,0)" class="label"><g transform="translate(-17.34375,-9)"><foreignObject height="18" width="34.6875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml">Core</div></foreignObject></g></g></g><g style="opacity: 1;" transform="translate(110.359375,115)" id="flowchart-B-13" class="node default"><rect class="label-container" height="38" width="175.625" y="-19" x="-87.8125" ry="0" rx="0"></rect><g transform="translate(0,0)" class="label"><g transform="translate(-77.8125,-9)"><foreignObject height="18" width="155.625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml">Pulverization Platform</div></foreignObject></g></g></g><g style="opacity: 1;" transform="translate(54.015625,203)" id="flowchart-C-15" class="node default"><rect class="label-container" height="38" width="92.03125" y="-19" x="-46.015625" ry="0" rx="0"></rect><g transform="translate(0,0)" class="label"><g transform="translate(-36.015625,-9)"><foreignObject height="18" width="72.03125"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml">RabbitMQ</div></foreignObject></g></g></g><g style="opacity: 1;" transform="translate(166.703125,203)" id="flowchart-D-17" class="node default"><rect class="label-container" height="38" width="33.34375" y="-19" x="-16.671875" ry="0" rx="0"></rect><g transform="translate(0,0)" class="label"><g transform="translate(-6.671875,-9)"><foreignObject height="18" width="13.34375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml">...</div></foreignObject></g></g></g></g></g></g></svg></div></div></div></section><section><h1 id="configuration-dsl">Configuration DSL</h1><p>The configuration in the framework defines how many logical devices are present in the system and defines how a logical device is composed.</p><p>This configuration can be achieved using the following DSL:</p><pre><code class="language-kotlin">val config = pulverizationConfig {
-    logicalDevice("smartphone") {
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hugo 0.107.0"><meta charset="utf-8"><title>Pulverization introduction</title><meta name="author" content="Nicolas Farabegoli"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/dist/reset.css"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/dist/reveal.css"><link rel="stylesheet" href="/pulverization-introduction/css/custom-theme.min.bbb5417e553bdbb77a65e98d6cc9e2fc8c5e6bf49aaaa751d6d31c1111519b32.css" id="theme"><link rel="stylesheet" href="/pulverization-introduction/highlight-js/github-gist.min.css"><link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1 id="pulverization">Pulverization</h1><h3 id="design-and-implementation-of-a-portable-framework-for-application-decomposition-and-deployment-in-edge-cloud-systems">Design and Implementation of a Portable Framework for Application Decomposition and Deployment in Edge-Cloud Systems</h3><p>Nicolas Farabegoli</p></section><section><section data-shortcode-section=""><h1 id="edge-cloud-continuum">Edge-Cloud continuum</h1><h2 id="opportunities-and-challenges">Opportunities and challenges</h2></section><section><h1 id="pulverization-approach">Pulverization approach</h1></section><section><h1 id="motivation">Motivation</h1></section></section><section><section data-shortcode-section=""><h1 id="pulverization-domain-model">Pulverization domain model</h1></section><section><h1 id="devices-components-interaction">Device’s components interaction</h1></section><section><h1 id="framework-requirements">Framework requirements</h1><!--# Pulverization
+
+The infrastructures providing networking and computing services are complex, layered and heterogeneous (e.g. edge–fog–cloud interplay).
+
+The implementation of a device's logic should be largely **independent** from the specific application deployment.
+
+The global system behavior of application services gets broken into smaller **computational pieces** that are **continuously** executed across the
+available hosts.
+
+
+<div class="multiCol">
+
+<div class='col '><p>A <em>Logical device</em> broken down into five <strong>components</strong>:</p>
+<ul>
+<li><em>Behaviour</em></li>
+<li><em>Communication</em></li>
+<li><em>State</em></li>
+<li><em>Sensors</em></li>
+<li><em>Actuators</em></li>
+</ul>
+</div>
+
+
+<div class='col '>
+<figure><img src="images/futureinternet-12-00203-g002.webp"/>
+</figure>
+
+</div>
+</div>
+
+---
+
+# The Framework
+
+
+<div class="multiCol">
+
+<div class='col '><p>Fundamental requirements of the framework are:</p>
+<ul>
+<li><strong>Multiplatform</strong>: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)</li>
+<li><strong>Multi-protocol</strong>: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)</li>
+<li><strong>Clean API</strong>: the framework should be easy to use and understand</li>
+</ul>
+</div>
+
+
+<div class='col '>
+<figure><img src="images/Kotlin-logo.png"/>
+</figure>
+
+</div>
+</div>
+
+---
+
+# Framework Architecture
+
+
+<div class="multiCol">
+
+<div class='col '><p>The framework is composed of three main packages:</p>
+<ul>
+<li><strong>Core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li>
+<li><strong>Pulverization platform</strong>: manages all the logic needed to implement a pulverized system</li>
+<li><strong>RabbitMQ platform</strong>: implementation of a communicator based on RabbitMQ</li>
+<li><strong>Other communicator</strong> work in progress&hellip;</li>
+</ul>
+</div>
+
+
+<div class='col '>
+<div class="mermaid">
+graph TD
+    A[Core] --- B[Pulverization Platform]
+    B --- C[RabbitMQ]
+    B --- D[...]
+
+</div>
+
+
+</div>
+</div>
+
+---
+
+# Demo 1
+
+## Single device multiple components
+
+The first demo shows how to "pulverize" a simple device for regulating the moisture of a terrain.
+
+<div class="multiCol">
+
+<div class='col '><ol>
+<li>The <em>sensor</em> component collect the moisture level of the terrain</li>
+<li>The <em>behaviour</em> component decides if the <em>actuator</em> component should be activated or not based on the threshold defined in the <em>state</em></li>
+<li>The <em>actuator</em> component open or close the valve based on the information given by the <em>behaviour</em> component</li>
+</ol>
+</div>
+
+
+<div class='col '>
+<figure><img src="images/demo-1.svg" width="80%"/>
+</figure>
+
+</div>
+
+</div>
+
+---
+
+# Demo 2
+
+## Multiple device multiple components
+
+This demo tries to emulate the _hot-warm-cold_ game using two smartphone and one antenna.
+
+Smartphones search for the antenna by measuring its **distance** (via Bluetooth RSSI) and sharing that value with other smartphones.
+The raspberry receives information about the distances of smartphones and emits light that is as bright the closer the devices are and less bright the
+farther away they are. In this case, the actuator for the raspberry is an LED.
+
+
+<div class="multiCol">
+
+<div class='col '>
+<figure><img src="images/demo-2-logical-comm.svg" width="55%"/>
+</figure>
+
+</div>
+
+
+<div class='col '>
+<figure><img src="images/demo-2-physical.svg" width="60%"/>
+</figure>
+
+</div>
+</div>
+
+--></section></section><section><section data-shortcode-section=""><h1 id="framework-features">Framework features</h1><div class="multiCol"><div class="col"><p>Main features:</p><ul><li><strong>Clean API:</strong></li><li><strong>Multi-protocols:</strong></li><li><strong>Multiplatform:</strong></li></ul></div><div class="col"><figure><img src="images/kotlin-multiplatform.svg" width="100%"></figure></div></div></section><section><h1 id="framework-architecture">Framework architecture</h1><div class="multiCol"><div class="col"><p>The framework <em>modules:</em></p><ul><li><strong>core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li><li><strong>platform</strong>: manages all the logic needed to implement a pulverized system</li><li><strong>rabbitmq-platform:</strong> implementation of a communicator based on <a href="https://www.rabbitmq.com/">RabbitMQ</a></li></ul></div><div class="col"><figure><img src="images/framework-architecture.svg" width="100%"></figure></div></div><p><em>Modularity</em> and <em>extensibility</em> are the main features of the framework enabling an incremental use of it.</p></section><section><h1 id="configuration-dsl">Configuration DSL</h1><p>The <strong>devices</strong> configuration can be achieved using the following <em>DSL</em>:</p><pre><code class="language-kotlin" data-line-numbers="|2-5|7-9|">val configuration = pulverizationConfig {
+    logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
         SensorsComponent and ActuatorsComponent deployableOn Device
     }
-    logicalDevice("antenna") {
+
+    logicalDevice("device-2") {
         CommunicationComponent and BehaviourComponent and ActuatorsComponent deployableOn Cloud
     }
 }
-</code></pre></section><section><h1 id="platform-dsl">Platform DSL</h1><p>This DSL enables the user to configure the actual platform specifying the concrete implementation for each component and defining which communicator
-use, in a pure <strong>declarative</strong> fashion.</p><pre><code class="language-kotlin">val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
-        behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
-        communicationLogic(SmartphoneCommunication(), ::smartphoneCommunicationLogic)
-        withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
-        withRemotePlace { defaultRabbitMQRemotePlace() }
-    }
+</code></pre></section><section><h1 id="platform-dsl">Platform DSL</h1><p>The <em>DSL</em> enables the user to configure the actual platform in a pure <strong>declarative</strong> fashion.</p><pre><code class="language-kotlin" data-line-numbers="|3-5|7-8|">suspend fun main() = coroutineScope {
+    val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
+            behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
+            stateLogic(SmartphoneState(), ::smartphoneStateLogic)
+            communicationLogic(SmartphoneCommunication(), ::smartphoneCommunicationLogic)
 
-platform.start()
-platform.stop()
-</code></pre></section><section><h1 id="demo-1">Demo 1</h1><h2 id="single-device-multiple-components">Single device multiple components</h2><p>The first demo shows how to “pulverize” a simple device for regulating the moisture of a terrain.</p><div class="multiCol"><div class="col"><ol><li>The <em>sensor</em> component collect the moisture level of the terrain</li><li>The <em>behaviour</em> component decides if the <em>actuator</em> component should be activated or not based on the threshold defined in the <em>state</em></li><li>The <em>actuator</em> component open or close the valve based on the information given by the <em>behaviour</em> component</li></ol></div><div class="col"><figure><img src="images/demo-1.svg" width="80%"></figure></div></div><p></p></section><section><h1 id="demo-2">Demo 2</h1><h2 id="multiple-device-multiple-components">Multiple device multiple components</h2><p>This demo tries to emulate the <em>hot-warm-cold</em> game using two smartphone and one antenna.</p><p>Smartphones search for the antenna by measuring its <strong>distance</strong> (via Bluetooth RSSI) and sharing that value with other smartphones.
-The raspberry receives information about the distances of smartphones and emits light that is as bright the closer the devices are and less bright the
-farther away they are. In this case, the actuator for the raspberry is an LED.</p><div class="multiCol"><div class="col"><figure><img src="images/demo-2-logical-comm.svg" width="55%"></figure></div><div class="col"><figure><img src="images/demo-2-physical.svg" width="60%"></figure></div></div></section><section><h1 id="references">References</h1><ul><li>[Pulverization framework] <a href="https://github.com/nicolasfara/pulverization-framework">https://github.com/nicolasfara/pulverization-framework</a></li><li>[Demo 1] <a href="https://github.com/nicolasfara/pulverization-moisture-soil">https://github.com/nicolasfara/pulverization-moisture-soil</a></li><li>[Demo 2] <a href="https://github.com/nicolasfara/pulverization-hot-warm-cold">https://github.com/nicolasfara/pulverization-hot-warm-cold</a></li></ul></section></div></div><script type="text/javascript" src="/pulverization-introduction/reveal-hugo/object-assign.js"></script>
-<a href="/pulverization-introduction/reveal-js/css/print/" id="print-location" style="display:none"></a>
-<script type="text/javascript">var printLocationElement=document.getElementById("print-location"),link=document.createElement("link");link.rel="stylesheet",link.type="text/css",link.href=printLocationElement.href+(window.location.search.match(/print-pdf/gi)?"pdf.css":"paper.css"),document.getElementsByTagName("head")[0].appendChild(link)</script><script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"github-gist","mermaid":[{"fontFamily":"Inconsolata","startOnLoad":false,"theme":"default","useMaxWidth":false}],"pdfseparatefragments":false,"slide_number":true,"theme":"white","width":"1440"}</script><script type="application/json" id="reveal-hugo-page-params">null</script><script src="/pulverization-introduction/reveal-js/js/reveal.js"></script>
-<script type="text/javascript">function camelize(e){return e&&Object.keys(e).forEach(function(t){newK=t.replace(/(_\w)/g,function(e){return e[1].toUpperCase()}),newK!=t&&(e[newK]=e[t],delete e[t])}),e}var revealHugoDefaults={center:!0,controls:!0,history:!0,progress:!0,transition:"slide"},revealHugoSiteParams=JSON.parse(document.getElementById("reveal-hugo-site-params").innerHTML),revealHugoPageParams=JSON.parse(document.getElementById("reveal-hugo-page-params").innerHTML),options=Object.assign({},camelize(revealHugoDefaults),camelize(revealHugoSiteParams),camelize(revealHugoPageParams));Reveal.initialize(options)</script><script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/markdown/marked.js"></script>
+            withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
+            withRemotePlace { defaultRabbitMQRemotePlace() }
+        }
+
+    platform.start().joinAll()
+    platform.stop()
+}
+</code></pre></section><section><h1 id="demo">Demo</h1></section></section><section><h1 id="future-work">Future work</h1></section><section><h1 id="references">References</h1><ul><li>[Pulverization framework] <a href="https://github.com/nicolasfara/pulverization-framework">https://github.com/nicolasfara/pulverization-framework</a></li><li>[Demo 1] <a href="https://github.com/nicolasfara/pulverization-moisture-soil">https://github.com/nicolasfara/pulverization-moisture-soil</a></li><li>[Demo 2] <a href="https://github.com/nicolasfara/pulverization-hot-warm-cold">https://github.com/nicolasfara/pulverization-hot-warm-cold</a></li></ul></section></div></div><script type="text/javascript" src="/pulverization-introduction/reveal-hugo/object-assign.js"></script>
+<script src="/pulverization-introduction/reveal-js/dist/reveal.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/markdown/markdown.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/highlight/highlight.js"></script>
-<script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/zoom-js/zoom.js"></script>
+<script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/zoom/zoom.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/notes/notes.js"></script>
-<script type="text/javascript" src="/pulverization-introduction/mermaid.min_6838052300336322795.js"></script>
-<script type="text/javascript">mermaid.initialize({startOnLoad:!1});let render=e=>{let t=e.currentSlide.querySelectorAll(".mermaid");if(!t.length)return;t.forEach(e=>{let t=e.getAttribute("data-processed");t||mermaid.init(void 0,e)})};render({currentSlide:Reveal.getCurrentSlide()}),Reveal.addEventListener("slidechanged",render),Reveal.addEventListener("ready",render)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},svg:{fontCache:"global"}}</script><script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script></body></html>
+<script type="text/javascript">function camelize(e){return e&&Object.keys(e).forEach(function(t){newK=t.replace(/(_\w)/g,function(e){return e[1].toUpperCase()}),newK!=t&&(e[newK]=e[t],delete e[t])}),e}var revealHugoDefaults={center:!0,controls:!0,history:!0,progress:!0,transition:"slide"},revealHugoSiteParams={custom_theme:"custom-theme.scss",custom_theme_compile:!0,custom_theme_options:{enablesourcemap:!0,targetpath:"css/custom-theme.css"},height:"900",highlight_theme:"github-gist",mermaid:[{fontFamily:"Inconsolata",startOnLoad:!1,theme:"default",useMaxWidth:!1}],pdfseparatefragments:!1,slide_number:!0,theme:"white",width:"1440"},revealHugoPageParams={},revealHugoPlugins={plugins:[RevealMarkdown,RevealHighlight,RevealZoom,RevealNotes]},options=Object.assign({},camelize(revealHugoDefaults),camelize(revealHugoSiteParams),camelize(revealHugoPageParams),camelize(revealHugoPlugins));Reveal.initialize(options)</script><script type="text/javascript" src="/pulverization-introduction/mermaid.min_6838052300336322795.js"></script>
+<script type="text/javascript">mermaid.initialize({startOnLoad:!1});let render=e=>{let t=e.currentSlide.querySelectorAll(".mermaid");if(!t.length)return;t.forEach(e=>{let t=e.getAttribute("data-processed");t||mermaid.init(void 0,e)})};render({currentSlide:Reveal.getCurrentSlide()}),Reveal.on("slidechanged",render),Reveal.on("ready",render)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},svg:{fontCache:"global"}}</script><script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script></body></html>
