@@ -1,4 +1,4 @@
-baseURL = 'https://nicolasfarabegoli.it/pulverization-introduction/'
+baseURL = 'https://nicolasfarabegoli.it/pulverization-introduction'
 languageCode = 'en-us'
 title = 'Slide template'
 disableKinds = ["sitemap", "RSS"]
@@ -34,3 +34,6 @@ startOnLoad = false
 theme = "default"
 fontFamily = "Inconsolata"
 useMaxWidth = false
+
+[markup.goldmark.renderer]
+unsafe = true

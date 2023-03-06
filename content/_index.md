@@ -5,8 +5,6 @@ outputs = ["Reveal"]
 
 # Pulverization
 
-&#8212;
-
-### A kotlin multiplatform framework
+### Design and Implementation of a Portable Framework for Application Decomposition and Deployment in Edge-Cloud Systems
 
 Nicolas Farabegoli

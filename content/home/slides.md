@@ -2,7 +2,37 @@
 weight = 1
 +++
 
-# Pulverization
+{{% section %}}
+
+# Edge-Cloud continuum
+
+## Opportunities and challenges
+
+---
+
+# Pulverization approach
+
+---
+
+# Motivation
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+# Pulverization domain model
+
+---
+
+# Device's components interaction
+
+---
+
+# Framework requirements
+
+<!--# Pulverization
 
 The infrastructures providing networking and computing services are complex, layered and heterogeneous (e.g. edge–fog–cloud interplay).
 
@@ -74,45 +104,6 @@ graph TD
 
 ---
 
-# Configuration DSL
-
-The configuration in the framework defines how many logical devices are present in the system and defines how a logical device is composed.
-
-This configuration can be achieved using the following DSL:
-
-```kotlin
-val config = pulverizationConfig {
-    logicalDevice("smartphone") {
-        BehaviourComponent and CommunicationComponent deployableOn Cloud
-        SensorsComponent and ActuatorsComponent deployableOn Device
-    }
-    logicalDevice("antenna") {
-        CommunicationComponent and BehaviourComponent and ActuatorsComponent deployableOn Cloud
-    }
-}
-```
-
----
-
-# Platform DSL
-
-This DSL enables the user to configure the actual platform specifying the concrete implementation for each component and defining which communicator
-use, in a pure **declarative** fashion.
-
-```kotlin
-val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
-        behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
-        communicationLogic(SmartphoneCommunication(), ::smartphoneCommunicationLogic)
-        withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
-        withRemotePlace { defaultRabbitMQRemotePlace() }
-    }
-
-platform.start()
-platform.stop()
-```
-
----
-
 # Demo 1
 
 ## Single device multiple components
@@ -154,6 +145,106 @@ farther away they are. In this case, the actuator for the raspberry is an LED.
 {{< figure src="images/demo-2-physical.svg" width="60%" >}}
 {{< /col >}}
 {{< /multicol >}}
+
+-->
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+# Framework features
+
+{{< multicol >}}
+{{% col %}}
+Main features:
+
+- **Clean API:**
+- **Multi-protocols:**
+- **Multiplatform:**
+
+{{% /col %}}
+
+{{< col >}}
+{{< figure src="images/kotlin-multiplatform.svg" width="100%" >}}
+{{< /col >}}
+
+{{< /multicol >}}
+
+---
+
+# Framework architecture
+
+{{< multicol >}}
+{{% col %}}
+The framework _modules:_
+
+- **core**: defines the pulverization concepts and interfaces needed to implement a pulverized system
+- **platform**: manages all the logic needed to implement a pulverized system
+- **rabbitmq-platform:** implementation of a communicator based on [RabbitMQ](https://www.rabbitmq.com/)
+
+{{% /col %}}
+
+{{< col >}}
+{{< figure src="images/framework-architecture.svg" width="100%" >}}
+{{< /col >}}
+
+{{< /multicol >}}
+
+_Modularity_ and _extensibility_ are the main features of the framework enabling an incremental use of it.
+
+---
+
+# Configuration DSL
+
+<!-- The configuration in the framework defines how many logical devices are present in the system and defines how a logical device is composed. -->
+
+The **devices** configuration can be achieved using the following _DSL_:
+
+```kotlin{|2-5|7-9|}
+val configuration = pulverizationConfig {
+    logicalDevice("device-1") {
+        BehaviourComponent and CommunicationComponent deployableOn Cloud
+        SensorsComponent and ActuatorsComponent deployableOn Device
+    }
+
+    logicalDevice("device-2") {
+        CommunicationComponent and BehaviourComponent and ActuatorsComponent deployableOn Cloud
+    }
+}
+```
+
+---
+
+# Platform DSL
+
+The _DSL_ enables the user to configure the actual platform in a pure **declarative** fashion.
+
+```kotlin{|3-5|7-8|}
+suspend fun main() = coroutineScope {
+    val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
+            behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
+            stateLogic(SmartphoneState(), ::smartphoneStateLogic)
+            communicationLogic(SmartphoneCommunication(), ::smartphoneCommunicationLogic)
+
+            withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
+            withRemotePlace { defaultRabbitMQRemotePlace() }
+        }
+
+    platform.start().joinAll()
+    platform.stop()
+}
+```
+
+---
+
+# Demo
+
+{{% /section %}}
+
+---
+
+# Future work
 
 ---
 

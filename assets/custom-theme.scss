@@ -1,12 +1,13 @@
-@import "reveal-js/css/theme/template/mixins";
-@import "reveal-js/css/theme/template/settings";
+@import "reveal-js/dist/theme/template/mixins";
+@import "reveal-js/dist/theme/template/settings";
 
-@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans');
 
 // Monospace fonts
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code');
 
 $backgroundColor: #fff;
 
@@ -14,8 +15,8 @@ $mainColor: #000;
 $headingColor: #111;
 
 $mainFontSize: 2em;
-$mainFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Lato', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$mainFont: 'Montserrat', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Montserrat', 'Open Sans', 'Source Sans Pro', Helvetica, sans-serif;
 $headingLetterSpacing: normal;
 $headingFontWeight: 600;
 $linkColor: #0477b9;
@@ -27,7 +28,7 @@ $heading2Size: 1.6em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
 
-@import "reveal-js/css/theme/template/theme";
+@import "reveal-js/dist/theme/template/theme";
 
 section.has-light-background {
 
@@ -39,6 +40,18 @@ section.has-light-background {
 	h5,
 	h6 {
 		color: #222;
+	}
+}
+
+.reveal {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		text-transform: none;
 	}
 }
 
@@ -58,13 +71,12 @@ section.has-light-background {
 	table-layout: fixed; // don't fudge depending on content
 	width: 100%;
 	text-align: left; // matter of taste, makes imho sense
-
 	.col {
 		display: table-cell;
 		vertical-align: top;
 		width: 50%;
 		margin: auto;
-		padding: 2% 0 5% 5%; // some vertical, and between columns
+		padding: 3% 3%; // some vertical, and between columns
 
 		&:first-of-type {
 			padding-left: 0;
@@ -81,11 +93,6 @@ section.has-light-background {
 	max-height: 23em;
 	height: auto;
 	object-fit: contain;
-}
-
-.reveal section img {
-	border: 0em;
-	box-shadow: none;
 }
 
 .mermaid svg {
@@ -110,11 +117,10 @@ section.has-light-background {
 	font-size: 1em;
 	color: black;
 	max-height: none;
-	font-family: 'Jetbrains Mono', 'Inconsolata', 'Source Code Pro', monospace;
-	font-weight: normal;
+	font-family: 'Fira Code', monospace;
 	margin: .1em;
 	// line-height: 1.2em;
-	// font-size: 1.5em;
+	font-size: 1.2em;
 	// font-weight: normal;
 	padding-left: .3vw;
 	padding-right: .3vw;
@@ -139,4 +145,10 @@ section.has-light-background {
 	transition: transform 0.3s ease;
 	border-width: 0.1em;
 	border-style: none;
+}
+
+.hor-align {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
