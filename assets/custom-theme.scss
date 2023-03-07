@@ -63,26 +63,25 @@ section.has-light-background {
 
 .reveal em {
 	font-style: italic;
-	color: #006900
+	color: #006900;
+	font-weight: 600;
 }
 
 .multiCol {
-	display: table;
-	table-layout: fixed; // don't fudge depending on content
-	width: 100%;
-	text-align: left; // matter of taste, makes imho sense
-	.col {
-		display: table-cell;
-		vertical-align: top;
-		width: 50%;
-		margin: auto;
-		padding: 3% 3%; // some vertical, and between columns
+	display: flex;
+}
 
-		&:first-of-type {
-			padding-left: 0;
-		}
+.col {
+	flex: 1;
+	padding: 0.9em;
+	text-align: left;
 
-		// there's nothing before col1
+	figure {
+		display: flex;
+		justify-content: center;
+		/* align horizontal */
+		align-items: center;
+		/* align vertical */
 	}
 }
 
@@ -145,10 +144,4 @@ section.has-light-background {
 	transition: transform 0.3s ease;
 	border-width: 0.1em;
 	border-style: none;
-}
-
-.hor-align {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }

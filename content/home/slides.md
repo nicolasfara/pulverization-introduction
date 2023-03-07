@@ -8,13 +8,56 @@ weight = 1
 
 ## Opportunities and challenges
 
+The growth of the **Internet of Things** (IoT) lead to the need of transferring, processing and storing an unpredictable amount of data.
+
+**Cloud computing** as an established technology for storing and processing data for a variety of application.
+Has some limitation in _real-time_ and _low-latency_ applications.
+
+**Fog computing** combines edge computing and cloud computing by utilizing _multiple layers_ of the computational infrastructure.
+
+Exploiting the **edge-cloud continuum** enables many opportunities for the _IoT_ but also presents some open challenges.
+
+---
+
+# Frameworks and methodologies
+
+Many proposal in the literature tries to handle the **edge-cloud continuum** problem.
+
+{{% multicol %}}
+{{% col %}}
+
+{{< figure src="images/osmotic-architecture.png" width="75%" >}}
+
+{{% /col %}}
+
+{{% col %}}
+
+{{< figure src="images/motif-concept.png" width="80%" >}}
+
+{{% /col %}}
+{{% /multicol %}}
+
+**Osmotic computing** main focus on distributed microservices architectures, while **DR-BIP** and **DReAM** focuses on the orchestration of distributed systems
+by dynamically adapting to the changing requirements basing the system on the _motif_ concept.
+
 ---
 
 # Pulverization approach
 
+Modern **CPS** are increasingly large, heterogeneous and dynamics which makes challenging engineering systems that can exploit _opportunistically_ the available resources.
+
+**Pulverization** address this problem by breaking down the system into _smaller computational pieces_ that are continuously executed across the available hosts.
+
+These **sub-components** can be deployed and wired separately, allowing for a _separation of concerns_ between the business logic and the deployment aspects.
+
 ---
 
 # Motivation
+
+- Actually the **pulverization** approach is tested only in simulation
+- The thesis work is focused on "close the gap" between _simulation_ and _real deployments_
+- With the framework, the user can focus on the _business logic_ of the system demanding to the framework _platform-specific_ aspects
+- The **pulverization** approach born in the _aggregate computing_ context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems
 
 {{% /section %}}
 
@@ -27,6 +70,8 @@ weight = 1
 ---
 
 # Device's components interaction
+
+{{< figure src="images/framework-components-interactions.svg" >}}
 
 ---
 
