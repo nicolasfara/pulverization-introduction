@@ -67,11 +67,53 @@ These **sub-components** can be deployed and wired separately, allowing for a _s
 
 # Pulverization domain model
 
+A **logical device** represents a device in the system where its components can be deployed _independently_ on the available infrastructure.  
+
+{{% multicol %}}
+{{% col %}}
+
+A logical device is decomposed into:
+
+- **Behaviour**: the logic of the device
+- **Communication**: the way the device communicates with other devices
+- **State**: the state of the device
+- **Sensors**: the sensors of the device
+- **Actuators**: the actuators of the device
+
+{{% /col %}}
+
+{{% col %}}
+
+{{< figure src="images/framework-components-interactions.svg" >}}
+
+{{% /col %}}
+{{% /multicol %}}
+
+A _host_ represent the physical device where the components are deployed.  
+We refer with **thin host** to a host with limited resources (e.g. embedded devices).  
+A **thick host** represents a host with an high computational power (e.g. cloud).
+
 ---
 
 # Device's components interaction
 
-{{< figure src="images/framework-components-interactions.svg" >}}
+Each device performs a _MAPE-like_ cycle to achieve the device's behaviour:
+
+{{% multicol %}}
+{{% col %}}
+
+1. _Context acquisition:_ get **sensors** and **communication** data storing them in the **state**
+2. _Computation:_ compute the **behaviour** function
+3. _Coordination data propagation:_ coordination data is sento to all the neighbours
+4. _Actuation:_ the **actuators** are activated according to the prescriptive actions
+{{% /col %}}
+
+{{% col %}}
+
+{{< figure src="images/mape-cycle.svg" width="58%" >}}
+
+{{% /col %}}
+{{% /multicol %}}
 
 ---
 
