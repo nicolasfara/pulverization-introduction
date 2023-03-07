@@ -115,82 +115,35 @@ Each device performs a _MAPE-like_ cycle to achieve the device's behaviour:
 {{% /col %}}
 {{% /multicol %}}
 
+{{% /section %}}
+
 ---
+
+{{% section %}}
 
 # Framework requirements
 
-<!--# Pulverization
-
-The infrastructures providing networking and computing services are complex, layered and heterogeneous (e.g. edge–fog–cloud interplay).
-
-The implementation of a device's logic should be largely **independent** from the specific application deployment.
-
-The global system behavior of application services gets broken into smaller **computational pieces** that are **continuously** executed across the
-available hosts.
-
 {{< multicol >}}
 {{% col %}}
+Main framework's features:
 
-A _Logical device_ broken down into five **components**:
-
-- _Behaviour_
-- _Communication_
-- _State_
-- _Sensors_
-- _Actuators_
+- **Simple & Clean API:** simplifying the development of the system
+- **Extensibility & customization:** the user can customize the framework to fit its needs
+- **Flexibility:** supports different deployment strategies and scenarios
+- **Multiplatform:** support a wide range of platform and architectures enabling a wide adoption of the framework
 
 {{% /col %}}
 
 {{< col >}}
-{{< figure src="images/futureinternet-12-00203-g002.webp" >}}
+{{< figure src="images/kotlin-multiplatform.svg" >}}
 {{< /col >}}
+
 {{< /multicol >}}
 
----
+The framework is entirely written in **Kotlin** and it is based on the [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
+technology supporting _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 
-# The Framework
-
-{{< multicol >}}
-{{% col %}}
-Fundamental requirements of the framework are:
-
-- **Multiplatform**: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)
-- **Multi-protocol**: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)
-- **Clean API**: the framework should be easy to use and understand
-
-{{% /col %}}
-
-{{< col >}}
-{{< figure src="images/Kotlin-logo.png" >}}
-{{< /col >}}
-{{< /multicol >}}
-
----
-
-# Framework Architecture
-
-{{< multicol >}}
-{{% col %}}
-The framework is composed of three main packages:
-
-- **Core**: defines the pulverization concepts and interfaces needed to implement a pulverized system
-- **Pulverization platform**: manages all the logic needed to implement a pulverized system
-- **RabbitMQ platform**: implementation of a communicator based on RabbitMQ
-- **Other communicator** work in progress...
-{{% /col %}}
-
-{{< col >}}
-{{< mermaid >}}
-graph TD
-    A[Core] --- B[Pulverization Platform]
-    B --- C[RabbitMQ]
-    B --- D[...]
-{{< /mermaid >}}
-{{< /col >}}
-{{< /multicol >}}
-
----
-
+<!--
 # Demo 1
 
 ## Single device multiple components
@@ -234,29 +187,6 @@ farther away they are. In this case, the actuator for the raspberry is an LED.
 {{< /multicol >}}
 
 -->
-{{% /section %}}
-
----
-
-{{% section %}}
-
-# Framework features
-
-{{< multicol >}}
-{{% col %}}
-Main features:
-
-- **Clean API:**
-- **Multi-protocols:**
-- **Multiplatform:**
-
-{{% /col %}}
-
-{{< col >}}
-{{< figure src="images/kotlin-multiplatform.svg" width="100%" >}}
-{{< /col >}}
-
-{{< /multicol >}}
 
 ---
 
@@ -322,6 +252,60 @@ suspend fun main() = coroutineScope {
     platform.stop()
 }
 ```
+
+---
+
+# Components communication
+
+To enable a seamless _intra-components communication_, the framework provides two concepts: **ComponentRef** and **Communicator**.
+
+{{% multicol %}}
+{{% col %}}
+
+### ComponentRef
+
+Models the **reference** to a component in the system _abstracting_ from the physical place where the component is deployed.
+
+With this abstraction _communication optimizations_ can be performed by the framework.
+
+{{% /col %}}
+
+{{% col %}}
+
+### Communicator
+
+Represents the way _how components communicate_ with each other abstracting from the specific **protocol**.
+
+The framework provides a default implementation based on [RabbitMQ](https://www.rabbitmq.com/) but other implementations can be provided.
+
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+# Validation and Testing
+
+Lot of effort has been put in the **testing** and **validating** the framework.
+
+An extensive test suite has been developed to ensure the functional correctness of the framework via _unit tests_ and _integration tests._
+A special focus has been put on verifying invalid configurations and scenarios that should occur using the framework.
+
+Validation has been performed using two **relevant scenarios**: moisture soil regulation and hot-warm-cold game.
+With this two scenarios, the framework has been tested in a real environment.
+
+{{% multicol %}}
+{{% col %}}
+
+{{< figure src="images/demo1-physical.svg" width="60%" >}}
+
+{{% /col %}}
+
+{{% col %}}
+
+{{< figure src="images/demo2-physical.svg" width="80%" >}}
+
+{{% /col %}}
+{{% /multicol %}}
 
 ---
 
