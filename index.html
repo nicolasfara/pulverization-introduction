@@ -1,144 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hugo 0.107.0"><meta charset="utf-8"><title>Pulverization introduction</title><meta name="author" content="Nicolas Farabegoli"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/dist/reset.css"><link rel="stylesheet" href="/pulverization-introduction/reveal-js/dist/reveal.css"><link rel="stylesheet" href="/pulverization-introduction/css/custom-theme.min.6543e424d411932125b7d95c225e3a6310f9c285095b94aa004eb1b60423f41a.css" id="theme"><link rel="stylesheet" href="/pulverization-introduction/highlight-js/github-gist.min.css"><link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1 id="pulverization">Pulverization</h1><h3 id="design-and-implementation-of-a-portable-framework-for-application-decomposition-and-deployment-in-edge-cloud-systems">Design and Implementation of a Portable Framework for Application Decomposition and Deployment in Edge-Cloud Systems</h3><p>Nicolas Farabegoli</p></section><section><section data-shortcode-section=""><h1 id="edge-cloud-continuum">Edge-Cloud continuum</h1><h2 id="opportunities-and-challenges">Opportunities and challenges</h2><p>The growth of the <strong>Internet of Things</strong> (IoT) lead to the need of transferring, processing and storing an unpredictable amount of data.</p><p><strong>Cloud computing</strong> as an established technology for storing and processing data for a variety of application.
 Has some limitation in <em>real-time</em> and <em>low-latency</em> applications.</p><p><strong>Fog computing</strong> combines edge computing and cloud computing by utilizing <em>multiple layers</em> of the computational infrastructure.</p><p>Exploiting the <strong>edge-cloud continuum</strong> enables many opportunities for the <em>IoT</em> but also presents some open challenges.</p></section><section><h1 id="frameworks-and-methodologies">Frameworks and methodologies</h1><p>Many proposal in the literature tries to handle the <strong>edge-cloud continuum</strong> problem.</p><div class="multiCol"><div class="col"><figure><img src="images/osmotic-architecture.png" width="75%"></figure></div><div class="col"><figure><img src="images/motif-concept.png" width="80%"></figure></div></div><p><strong>Osmotic computing</strong> main focus on distributed microservices architectures, while <strong>DR-BIP</strong> and <strong>DReAM</strong> focuses on the orchestration of distributed systems
-by dynamically adapting to the changing requirements basing the system on the <em>motif</em> concept.</p></section><section><h1 id="pulverization-approach">Pulverization approach</h1><p>Modern <strong>CPS</strong> are increasingly large, heterogeneous and dynamics which makes challenging engineering systems that can exploit <em>opportunistically</em> the available resources.</p><p><strong>Pulverization</strong> address this problem by breaking down the system into <em>smaller computational pieces</em> that are continuously executed across the available hosts.</p><p>These <strong>sub-components</strong> can be deployed and wired separately, allowing for a <em>separation of concerns</em> between the business logic and the deployment aspects.</p></section><section><h1 id="motivation">Motivation</h1><ul><li>Actually the <strong>pulverization</strong> approach is tested only in simulation</li><li>The thesis work is focused on “close the gap” between <em>simulation</em> and <em>real deployments</em></li><li>With the framework, the user can focus on the <em>business logic</em> of the system demanding to the framework <em>platform-specific</em> aspects</li><li>The <strong>pulverization</strong> approach born in the <em>aggregate computing</em> context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems</li></ul></section></section><section><section data-shortcode-section=""><h1 id="pulverization-domain-model">Pulverization domain model</h1><p>A <strong>logical device</strong> represents a device in the system where its components can be deployed <em>independently</em> on the available infrastructure.</p><div class="multiCol"><div class="col"><p>A logical device is decomposed into:</p><ul><li><strong>Behaviour</strong>: the logic of the device</li><li><strong>Communication</strong>: the way the device communicates with other devices</li><li><strong>State</strong>: the state of the device</li><li><strong>Sensors</strong>: the sensors of the device</li><li><strong>Actuators</strong>: the actuators of the device</li></ul></div><div class="col"><figure><img src="images/framework-components-interactions.svg"></figure></div></div><p>A <em>host</em> represent the physical device where the components are deployed.<br>We refer with <strong>thin host</strong> to a host with limited resources (e.g. embedded devices).<br>A <strong>thick host</strong> represents a host with an high computational power (e.g. cloud).</p></section><section><h1 id="devices-components-interaction">Device’s components interaction</h1><p>Each device performs a <em>MAPE-like</em> cycle to achieve the device’s behaviour:</p><div class="multiCol"><div class="col"><ol><li><em>Context acquisition:</em> get <strong>sensors</strong> and <strong>communication</strong> data storing them in the <strong>state</strong></li><li><em>Computation:</em> compute the <strong>behaviour</strong> function</li><li><em>Coordination data propagation:</em> coordination data is sento to all the neighbours</li><li><em>Actuation:</em> the <strong>actuators</strong> are activated according to the prescriptive actions</li></ol></div><div class="col"><figure><img src="images/mape-cycle.svg" width="58%"></figure></div></div></section><section><h1 id="framework-requirements">Framework requirements</h1><!--# Pulverization
-
-The infrastructures providing networking and computing services are complex, layered and heterogeneous (e.g. edge–fog–cloud interplay).
-
-The implementation of a device's logic should be largely **independent** from the specific application deployment.
-
-The global system behavior of application services gets broken into smaller **computational pieces** that are **continuously** executed across the
-available hosts.
-
-
-<div class="multiCol">
-
-<div class='col '><p>A <em>Logical device</em> broken down into five <strong>components</strong>:</p>
-<ul>
-<li><em>Behaviour</em></li>
-<li><em>Communication</em></li>
-<li><em>State</em></li>
-<li><em>Sensors</em></li>
-<li><em>Actuators</em></li>
-</ul>
-</div>
-
-
-<div class='col '>
-<figure><img src="images/futureinternet-12-00203-g002.webp"/>
-</figure>
-
-</div>
-</div>
-
----
-
-# The Framework
-
-
-<div class="multiCol">
-
-<div class='col '><p>Fundamental requirements of the framework are:</p>
-<ul>
-<li><strong>Multiplatform</strong>: the framework should be able to run on any platform (e.g. JVM, Android, iOS, Linux, Windows, embedded systems, etc.)</li>
-<li><strong>Multi-protocol</strong>: the framework should be able to communicate with any protocol (e.g. MQTT, RabbitMQ etc.)</li>
-<li><strong>Clean API</strong>: the framework should be easy to use and understand</li>
-</ul>
-</div>
-
-
-<div class='col '>
-<figure><img src="images/Kotlin-logo.png"/>
-</figure>
-
-</div>
-</div>
-
----
-
-# Framework Architecture
-
-
-<div class="multiCol">
-
-<div class='col '><p>The framework is composed of three main packages:</p>
-<ul>
-<li><strong>Core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li>
-<li><strong>Pulverization platform</strong>: manages all the logic needed to implement a pulverized system</li>
-<li><strong>RabbitMQ platform</strong>: implementation of a communicator based on RabbitMQ</li>
-<li><strong>Other communicator</strong> work in progress&hellip;</li>
-</ul>
-</div>
-
-
-<div class='col '>
-<div class="mermaid">
-graph TD
-    A[Core] --- B[Pulverization Platform]
-    B --- C[RabbitMQ]
-    B --- D[...]
-
-</div>
-
-
-</div>
-</div>
-
----
-
-# Demo 1
-
-## Single device multiple components
-
-The first demo shows how to "pulverize" a simple device for regulating the moisture of a terrain.
-
-<div class="multiCol">
-
-<div class='col '><ol>
-<li>The <em>sensor</em> component collect the moisture level of the terrain</li>
-<li>The <em>behaviour</em> component decides if the <em>actuator</em> component should be activated or not based on the threshold defined in the <em>state</em></li>
-<li>The <em>actuator</em> component open or close the valve based on the information given by the <em>behaviour</em> component</li>
-</ol>
-</div>
-
-
-<div class='col '>
-<figure><img src="images/demo-1.svg" width="80%"/>
-</figure>
-
-</div>
-
-</div>
-
----
-
-# Demo 2
-
-## Multiple device multiple components
-
-This demo tries to emulate the _hot-warm-cold_ game using two smartphone and one antenna.
-
-Smartphones search for the antenna by measuring its **distance** (via Bluetooth RSSI) and sharing that value with other smartphones.
-The raspberry receives information about the distances of smartphones and emits light that is as bright the closer the devices are and less bright the
-farther away they are. In this case, the actuator for the raspberry is an LED.
-
-
-<div class="multiCol">
-
-<div class='col '>
-<figure><img src="images/demo-2-logical-comm.svg" width="55%"/>
-</figure>
-
-</div>
-
-
-<div class='col '>
-<figure><img src="images/demo-2-physical.svg" width="60%"/>
-</figure>
-
-</div>
-</div>
-
---></section></section><section><section data-shortcode-section=""><h1 id="framework-features">Framework features</h1><div class="multiCol"><div class="col"><p>Main features:</p><ul><li><strong>Clean API:</strong></li><li><strong>Multi-protocols:</strong></li><li><strong>Multiplatform:</strong></li></ul></div><div class="col"><figure><img src="images/kotlin-multiplatform.svg" width="100%"></figure></div></div></section><section><h1 id="framework-architecture">Framework architecture</h1><div class="multiCol"><div class="col"><p>The framework <em>modules:</em></p><ul><li><strong>core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li><li><strong>platform</strong>: manages all the logic needed to implement a pulverized system</li><li><strong>rabbitmq-platform:</strong> implementation of a communicator based on <a href="https://www.rabbitmq.com/">RabbitMQ</a></li></ul></div><div class="col"><figure><img src="images/framework-architecture.svg" width="100%"></figure></div></div><p><em>Modularity</em> and <em>extensibility</em> are the main features of the framework enabling an incremental use of it.</p></section><section><h1 id="configuration-dsl">Configuration DSL</h1><p>The <strong>devices</strong> configuration can be achieved using the following <em>DSL</em>:</p><pre><code class="language-kotlin" data-line-numbers="|2-5|7-9|">val configuration = pulverizationConfig {
+by dynamically adapting to the changing requirements basing the system on the <em>motif</em> concept.</p></section><section><h1 id="pulverization-approach">Pulverization approach</h1><p>Modern <strong>CPS</strong> are increasingly large, heterogeneous and dynamics which makes challenging engineering systems that can exploit <em>opportunistically</em> the available resources.</p><p><strong>Pulverization</strong> address this problem by breaking down the system into <em>smaller computational pieces</em> that are continuously executed across the available hosts.</p><p>These <strong>sub-components</strong> can be deployed and wired separately, allowing for a <em>separation of concerns</em> between the business logic and the deployment aspects.</p></section><section><h1 id="motivation">Motivation</h1><ul><li>Actually the <strong>pulverization</strong> approach is tested only in simulation</li><li>The thesis work is focused on “close the gap” between <em>simulation</em> and <em>real deployments</em></li><li>With the framework, the user can focus on the <em>business logic</em> of the system demanding to the framework <em>platform-specific</em> aspects</li><li>The <strong>pulverization</strong> approach born in the <em>aggregate computing</em> context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems</li></ul></section></section><section><section data-shortcode-section=""><h1 id="pulverization-domain-model">Pulverization domain model</h1><p>A <strong>logical device</strong> represents a device in the system where its components can be deployed <em>independently</em> on the available infrastructure.</p><div class="multiCol"><div class="col"><p>A logical device is decomposed into:</p><ul><li><strong>Behaviour</strong>: the logic of the device</li><li><strong>Communication</strong>: the way the device communicates with other devices</li><li><strong>State</strong>: the state of the device</li><li><strong>Sensors</strong>: the sensors of the device</li><li><strong>Actuators</strong>: the actuators of the device</li></ul></div><div class="col"><figure><img src="images/framework-components-interactions.svg"></figure></div></div><p>A <em>host</em> represent the physical device where the components are deployed.<br>We refer with <strong>thin host</strong> to a host with limited resources (e.g. embedded devices).<br>A <strong>thick host</strong> represents a host with an high computational power (e.g. cloud).</p></section><section><h1 id="devices-components-interaction">Device’s components interaction</h1><p>Each device performs a <em>MAPE-like</em> cycle to achieve the device’s behaviour:</p><div class="multiCol"><div class="col"><ol><li><em>Context acquisition:</em> get <strong>sensors</strong> and <strong>communication</strong> data storing them in the <strong>state</strong></li><li><em>Computation:</em> compute the <strong>behaviour</strong> function</li><li><em>Coordination data propagation:</em> coordination data is sento to all the neighbours</li><li><em>Actuation:</em> the <strong>actuators</strong> are activated according to the prescriptive actions</li></ol></div><div class="col"><figure><img src="images/mape-cycle.svg" width="58%"></figure></div></div></section></section><section><section data-shortcode-section=""><h1 id="framework-requirements">Framework requirements</h1><div class="multiCol"><div class="col"><p>Main framework’s features:</p><ul><li><strong>Simple &amp; Clean API:</strong> simplifying the development of the system</li><li><strong>Extensibility &amp; customization:</strong> the user can customize the framework to fit its needs</li><li><strong>Flexibility:</strong> supports different deployment strategies and scenarios</li><li><strong>Multiplatform:</strong> support a wide range of platform and architectures enabling a wide adoption of the framework</li></ul></div><div class="col"><figure><img src="images/kotlin-multiplatform.svg"></figure></div></div><p>The framework is entirely written in <strong>Kotlin</strong> and it is based on the <a href="https://kotlinlang.org/docs/multiplatform.html">Kotlin Multiplatform</a>
+technology supporting <em>JVM, Android, JS, iOS, Linux, macOS,</em> and <em>Windows</em>.</p></section><section><h1 id="framework-architecture">Framework architecture</h1><div class="multiCol"><div class="col"><p>The framework <em>modules:</em></p><ul><li><strong>core</strong>: defines the pulverization concepts and interfaces needed to implement a pulverized system</li><li><strong>platform</strong>: manages all the logic needed to implement a pulverized system</li><li><strong>rabbitmq-platform:</strong> implementation of a communicator based on <a href="https://www.rabbitmq.com/">RabbitMQ</a></li></ul></div><div class="col"><figure><img src="images/framework-architecture.svg" width="100%"></figure></div></div><p><em>Modularity</em> and <em>extensibility</em> are the main features of the framework enabling an incremental use of it.</p></section><section><h1 id="configuration-dsl">Configuration DSL</h1><p>The <strong>devices</strong> configuration can be achieved using the following <em>DSL</em>:</p><pre><code class="language-kotlin" data-line-numbers="|2-5|7-9|">val configuration = pulverizationConfig {
     logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
         SensorsComponent and ActuatorsComponent deployableOn Device
@@ -161,11 +24,12 @@ farther away they are. In this case, the actuator for the raspberry is an LED.
     platform.start().joinAll()
     platform.stop()
 }
-</code></pre></section><section><h1 id="demo">Demo</h1></section></section><section><h1 id="future-work">Future work</h1></section><section><h1 id="references">References</h1><ul><li>[Pulverization framework] <a href="https://github.com/nicolasfara/pulverization-framework">https://github.com/nicolasfara/pulverization-framework</a></li><li>[Demo 1] <a href="https://github.com/nicolasfara/pulverization-moisture-soil">https://github.com/nicolasfara/pulverization-moisture-soil</a></li><li>[Demo 2] <a href="https://github.com/nicolasfara/pulverization-hot-warm-cold">https://github.com/nicolasfara/pulverization-hot-warm-cold</a></li></ul></section></div></div><script type="text/javascript" src="/pulverization-introduction/reveal-hugo/object-assign.js"></script>
+</code></pre></section><section><h1 id="components-communication">Components communication</h1><p>To enable a seamless <em>intra-components communication</em>, the framework provides two concepts: <strong>ComponentRef</strong> and <strong>Communicator</strong>.</p><div class="multiCol"><div class="col"><h3 id="componentref">ComponentRef</h3><p>Models the <strong>reference</strong> to a component in the system <em>abstracting</em> from the physical place where the component is deployed.</p><p>With this abstraction <em>communication optimizations</em> can be performed by the framework.</p></div><div class="col"><h3 id="communicator">Communicator</h3><p>Represents the way <em>how components communicate</em> with each other abstracting from the specific <strong>protocol</strong>.</p><p>The framework provides a default implementation based on <a href="https://www.rabbitmq.com/">RabbitMQ</a> but other implementations can be provided.</p></div></div></section><section><h1 id="validation-and-testing">Validation and Testing</h1><p>Lot of effort has been put in the <strong>testing</strong> and <strong>validating</strong> the framework.</p><p>An extensive test suite has been developed to ensure the functional correctness of the framework via <em>unit tests</em> and <em>integration tests.</em>
+A special focus has been put on verifying invalid configurations and scenarios that should occur using the framework.</p><p>Validation has been performed using two <strong>relevant scenarios</strong>: moisture soil regulation and hot-warm-cold game.
+With this two scenarios, the framework has been tested in a real environment.</p><div class="multiCol"><div class="col"><figure><img src="images/demo1-physical.svg" width="60%"></figure></div><div class="col"><figure><img src="images/demo2-physical.svg" width="80%"></figure></div></div></section><section><h1 id="demo">Demo</h1></section></section><section><h1 id="future-work">Future work</h1></section><section><h1 id="references">References</h1><ul><li>[Pulverization framework] <a href="https://github.com/nicolasfara/pulverization-framework">https://github.com/nicolasfara/pulverization-framework</a></li><li>[Demo 1] <a href="https://github.com/nicolasfara/pulverization-moisture-soil">https://github.com/nicolasfara/pulverization-moisture-soil</a></li><li>[Demo 2] <a href="https://github.com/nicolasfara/pulverization-hot-warm-cold">https://github.com/nicolasfara/pulverization-hot-warm-cold</a></li></ul></section></div></div><script type="text/javascript" src="/pulverization-introduction/reveal-hugo/object-assign.js"></script>
 <script src="/pulverization-introduction/reveal-js/dist/reveal.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/markdown/markdown.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/highlight/highlight.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/zoom/zoom.js"></script>
 <script type="text/javascript" src="/pulverization-introduction/reveal-js/plugin/notes/notes.js"></script>
-<script type="text/javascript">function camelize(e){return e&&Object.keys(e).forEach(function(t){newK=t.replace(/(_\w)/g,function(e){return e[1].toUpperCase()}),newK!=t&&(e[newK]=e[t],delete e[t])}),e}var revealHugoDefaults={center:!0,controls:!0,history:!0,progress:!0,transition:"slide"},revealHugoSiteParams={custom_theme:"custom-theme.scss",custom_theme_compile:!0,custom_theme_options:{enablesourcemap:!0,targetpath:"css/custom-theme.css"},height:"900",highlight_theme:"github-gist",mermaid:[{fontFamily:"Inconsolata",startOnLoad:!1,theme:"default",useMaxWidth:!1}],pdfseparatefragments:!1,slide_number:!0,theme:"white",width:"1440"},revealHugoPageParams={},revealHugoPlugins={plugins:[RevealMarkdown,RevealHighlight,RevealZoom,RevealNotes]},options=Object.assign({},camelize(revealHugoDefaults),camelize(revealHugoSiteParams),camelize(revealHugoPageParams),camelize(revealHugoPlugins));Reveal.initialize(options)</script><script type="text/javascript" src="/pulverization-introduction/mermaid.min_6838052300336322795.js"></script>
-<script type="text/javascript">mermaid.initialize({startOnLoad:!1});let render=e=>{let t=e.currentSlide.querySelectorAll(".mermaid");if(!t.length)return;t.forEach(e=>{let t=e.getAttribute("data-processed");t||mermaid.init(void 0,e)})};render({currentSlide:Reveal.getCurrentSlide()}),Reveal.on("slidechanged",render),Reveal.on("ready",render)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},svg:{fontCache:"global"}}</script><script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script></body></html>
+<script type="text/javascript">function camelize(e){return e&&Object.keys(e).forEach(function(t){newK=t.replace(/(_\w)/g,function(e){return e[1].toUpperCase()}),newK!=t&&(e[newK]=e[t],delete e[t])}),e}var revealHugoDefaults={center:!0,controls:!0,history:!0,progress:!0,transition:"slide"},revealHugoSiteParams={custom_theme:"custom-theme.scss",custom_theme_compile:!0,custom_theme_options:{enablesourcemap:!0,targetpath:"css/custom-theme.css"},height:"900",highlight_theme:"github-gist",mermaid:[{fontFamily:"Inconsolata",startOnLoad:!1,theme:"default",useMaxWidth:!1}],pdfseparatefragments:!1,slide_number:!0,theme:"white",width:"1440"},revealHugoPageParams={},revealHugoPlugins={plugins:[RevealMarkdown,RevealHighlight,RevealZoom,RevealNotes]},options=Object.assign({},camelize(revealHugoDefaults),camelize(revealHugoSiteParams),camelize(revealHugoPageParams),camelize(revealHugoPlugins));Reveal.initialize(options)</script><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]},svg:{fontCache:"global"}}</script><script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script></body></html>
