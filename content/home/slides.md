@@ -26,11 +26,15 @@ Many proposal in the literature tries to handle the **edge-cloud continuum** pro
 {{% multicol %}}
 {{% col %}}
 
+#### Osmotic computing
+
 {{< figure src="images/osmotic-architecture.png" width="75%" >}}
 
 {{% /col %}}
 
 {{% col %}}
+
+#### DR-BIP & DReAM
 
 {{< figure src="images/motif-concept.png" width="80%" >}}
 
@@ -142,51 +146,6 @@ Main framework's features:
 
 The framework is entirely written in **Kotlin** and it is based on the [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 technology supporting _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
-
-<!--
-# Demo 1
-
-## Single device multiple components
-
-The first demo shows how to "pulverize" a simple device for regulating the moisture of a terrain.
-{{< multicol >}}
-{{% col %}}
-
-1. The _sensor_ component collect the moisture level of the terrain
-2. The _behaviour_ component decides if the _actuator_ component should be activated or not based on the threshold defined in the _state_
-3. The _actuator_ component open or close the valve based on the information given by the _behaviour_ component
-
-{{% /col %}}
-
-{{< col >}}
-{{< figure src="images/demo-1.svg" width="80%" >}}
-{{< /col >}}
-
-{{< /multicol >}}
-
----
-
-# Demo 2
-
-## Multiple device multiple components
-
-This demo tries to emulate the _hot-warm-cold_ game using two smartphone and one antenna.
-
-Smartphones search for the antenna by measuring its **distance** (via Bluetooth RSSI) and sharing that value with other smartphones.
-The raspberry receives information about the distances of smartphones and emits light that is as bright the closer the devices are and less bright the
-farther away they are. In this case, the actuator for the raspberry is an LED.
-
-{{< multicol >}}
-{{< col >}}
-{{< figure src="images/demo-2-logical-comm.svg" width="55%" >}}
-{{< /col >}}
-
-{{< col >}}
-{{< figure src="images/demo-2-physical.svg" width="60%" >}}
-{{< /col >}}
-{{< /multicol >}}
-
--->
 
 ---
 
@@ -311,16 +270,49 @@ With this two scenarios, the framework has been tested in a real environment.
 
 # Demo
 
+[Video in cui mostro demo crowd: da finire]
+
 {{% /section %}}
 
 ---
 
 # Future work
 
+- **Multi-protocol** support: best protocol based on device's capabilities and required QoS
+- **Dynamism** support: dynamic changes in the system's requirements and configuration and opportunistically exploit the best deployment strategy
+- **Automatic deployment** support: automatic deployment of the system in the available infrastructure leveraging DevOps methodologies
+- **Performance evaluation:** evaluate the framework's performance in terms of _latency_ and _throughput_ in different deployment strategy and scenarios
+
 ---
 
 # References
 
-- [Pulverization framework] [https://github.com/nicolasfara/pulverization-framework](https://github.com/nicolasfara/pulverization-framework)
-- [Demo 1] [https://github.com/nicolasfara/pulverization-moisture-soil](https://github.com/nicolasfara/pulverization-moisture-soil)
-- [Demo 2] [https://github.com/nicolasfara/pulverization-hot-warm-cold](https://github.com/nicolasfara/pulverization-hot-warm-cold)
+{{% refentry fa-class="fa-brands fa-github" %}}
+
+[`nicolasfara/pulverization-framework`](https://github.com/nicolasfara/pulverization-framework)
+
+{{% /refentry %}}
+
+{{% refentry fa-class="fa-brands fa-github" %}}
+
+[`nicolasfara/pulverization-moisture-soil`](https://github.com/nicolasfara/pulverization-moisture-soil)
+
+{{% /refentry %}}
+
+{{% refentry fa-class="fa-brands fa-github" %}}
+
+[`nicolasfara/pulverization-hot-warm-cold`](https://github.com/nicolasfara/pulverization-hot-warm-cold)
+
+{{% /refentry %}}
+
+{{% refentry fa-class="fa-brands fa-github" %}}
+
+[`nicolasfara/pulverization-crowd`](https://github.com/nicolasfara/pulverization-crowd)
+
+{{% /refentry %}}
+
+{{% refentry fa-class="fa-solid fa-book" %}}
+
+[`nicolasfarabegoli.it/pulverization-framework`](https://nicolasfarabegoli.it/pulverization-framework)
+
+{{% /refentry %}}

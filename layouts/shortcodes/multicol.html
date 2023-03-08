@@ -1,2 +1,2 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="multiCol">{{ .Inner }}</div>
+<div class='multiCol {{ .Get "class" }}'>{{ .Inner }}</div>

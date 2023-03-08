@@ -9,6 +9,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code');
 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
+
 $backgroundColor: #fff;
 
 $mainColor: #000;
@@ -76,7 +78,7 @@ section.has-light-background {
 	padding: 0.9em;
 	text-align: left;
 	align-self: center;
-	
+
 	figure {
 		display: flex;
 		justify-content: center;
@@ -145,4 +147,26 @@ section.has-light-background {
 	transition: transform 0.3s ease;
 	border-width: 0.1em;
 	border-style: none;
+}
+
+.text-center {
+	align-items: center;
+	text-align: center !important;
+}
+
+.ref-entry {
+	display: flex;
+
+	i {
+		font-size: 1.5em;
+		object-fit: contain;
+		align-self: center;
+		padding: 0em 1em;
+	}
+
+	p {
+		text-align: left;
+		flex: 1 1 auto;
+		align-self: center;
+	}
 }
