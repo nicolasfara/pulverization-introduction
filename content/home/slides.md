@@ -59,7 +59,7 @@ These **sub-components** can be deployed and wired separately, allowing for a _s
 # Motivation
 
 - Actually the **pulverization** approach is tested only in simulation
-- The thesis work is focused on "close the gap" between _simulation_ and _real deployments_
+- The thesis work is focused on "closing the gap" between _simulation_ and _real deployments_
 - With the framework, the user can focus on the _business logic_ of the system demanding to the framework _platform-specific_ aspects
 - The **pulverization** approach born in the _aggregate computing_ context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems
 
