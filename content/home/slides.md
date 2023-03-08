@@ -253,15 +253,19 @@ Validation has been performed using two **relevant scenarios**: moisture soil re
 With this two scenarios, the framework has been tested in a real environment.
 
 {{% multicol %}}
-{{% col %}}
+{{% col class="text-center" %}}
 
 {{< figure src="images/demo1-physical.svg" width="60%" >}}
 
+_Moisture soil_ demo
+
 {{% /col %}}
 
-{{% col %}}
+{{% col class="text-center" %}}
 
 {{< figure src="images/demo2-physical.svg" width="80%" >}}
+
+_Hot-warm-cold_ demo
 
 {{% /col %}}
 {{% /multicol %}}
