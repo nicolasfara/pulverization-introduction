@@ -6,7 +6,7 @@ weight = 1
 
 ## Opportunities and challenges
 
-The growth of the **Internet of Things** (IoT) lead to the need of transferring, processing and storing an unpredictable amount of data.
+The growth of the **Internet of Things** (IoT) lead to the need of transferring, processing and storing an unpredictable amount of data
 
 **Cloud computing** as an established technology for storing and processing data for a variety of application.
 Has some limitation in _real-time_ and _low-latency_ applications.
@@ -274,12 +274,23 @@ _Hot-warm-cold_ demo
 
 ---
 
-# Future work
+# Conclusions
 
-- **Multi-protocol** support: best protocol based on device's capabilities and required QoS
-- **Dynamism** support: dynamic changes in the system's requirements and configuration and opportunistically exploit the best deployment strategy
-- **Automatic deployment** support: automatic deployment of the system in the available infrastructure leveraging DevOps methodologies
-- **Performance evaluation:** evaluate the framework's performance in terms of _latency_ and _throughput_ in different deployment strategy and scenarios
+The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
+
+- providing _clean_ and _effective_ API with _multiplatform_ support
+- promoting _reusability_ and _independency_ from underlying infrastructure
+- allowing users to focus on _functional_ aspects
+- leaving the management of _infrastructural_ aspects to the framework
+
+**Testing** and **demos** has been used to validate the _functional_ operation and to prove its the _effectiveness_ in real-world scenarios.
+
+## Future work
+
+- **Multi-protocol:** best protocol based on device's capabilities and required QoS
+- **Dynamism:** adapt the system opportunistically to changing requirements
+- **Automatic deployment:** DevOps methodologies for automatic system deployment
+- **Performance:** _latency_ and _throughput_ evaluation in different deployment strategy
 
 ---
 
