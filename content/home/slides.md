@@ -2,8 +2,6 @@
 weight = 1
 +++
 
-{{% section %}}
-
 # Edge-Cloud continuum
 
 ## Opportunities and challenges
@@ -63,11 +61,7 @@ These **sub-components** can be deployed and wired separately, allowing for a _s
 - With the framework, the user can focus on the _business logic_ of the system demanding to the framework _platform-specific_ aspects
 - The **pulverization** approach born in the _aggregate computing_ context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems
 
-{{% /section %}}
-
 ---
-
-{{% section %}}
 
 # Pulverization domain model
 
@@ -119,11 +113,7 @@ Each device performs a _MAPE-like_ cycle to achieve the device's behaviour:
 {{% /col %}}
 {{% /multicol %}}
 
-{{% /section %}}
-
 ---
-
-{{% section %}}
 
 # Framework requirements
 
@@ -131,10 +121,10 @@ Each device performs a _MAPE-like_ cycle to achieve the device's behaviour:
 {{% col %}}
 Main framework's features:
 
-- **Simple & Clean API:** simplifying the development of the system
-- **Extensibility & customization:** the user can customize the framework to fit its needs
-- **Flexibility:** supports different deployment strategies and scenarios
-- **Multiplatform:** support a wide range of platform and architectures enabling a wide adoption of the framework
+- **Simple & Clean API:** easy to use
+- **Extensibility & customization:** custom user-defined components
+- **Flexibility:** cope with different deployments strategies
+- **Multi-platform:** multiple architectures
 
 {{% /col %}}
 
@@ -144,8 +134,8 @@ Main framework's features:
 
 {{< /multicol >}}
 
-The framework is entirely written in **Kotlin** and it is based on the [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
-technology supporting _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
+The framework is written in [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html) supporting:  
+_JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 
 ---
 
@@ -155,9 +145,9 @@ technology supporting _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 {{% col %}}
 The framework _modules:_
 
-- **core**: defines the pulverization concepts and interfaces needed to implement a pulverized system
-- **platform**: manages all the logic needed to implement a pulverized system
-- **rabbitmq-platform:** implementation of a communicator based on [RabbitMQ](https://www.rabbitmq.com/)
+- **core**: the pulverization concepts
+- **platform**: logic needed to implement a pulverized system
+- **rabbitmq-platform:** communicator based on [RabbitMQ](https://www.rabbitmq.com/)
 
 {{% /col %}}
 
@@ -172,8 +162,6 @@ _Modularity_ and _extensibility_ are the main features of the framework enabling
 ---
 
 # Configuration DSL
-
-<!-- The configuration in the framework defines how many logical devices are present in the system and defines how a logical device is composed. -->
 
 The **devices** configuration can be achieved using the following _DSL_:
 
@@ -216,16 +204,18 @@ suspend fun main() = coroutineScope {
 
 # Components communication
 
-To enable a seamless _intra-components communication_, the framework provides two concepts: **ComponentRef** and **Communicator**.
+To enable _intra-components communication_, the framework provides two concepts: **ComponentRef** and **Communicator**.
+
+{{< figure src="images/componentref-communicator.svg" >}}
 
 {{% multicol %}}
 {{% col %}}
 
 ### ComponentRef
 
-Models the **reference** to a component in the system _abstracting_ from the physical place where the component is deployed.
+The **reference** to a component  _abstracting_ from its physical place.
 
-With this abstraction _communication optimizations_ can be performed by the framework.
+Some _communication optimizations_ can be performed by the framework.
 
 {{% /col %}}
 
@@ -233,9 +223,9 @@ With this abstraction _communication optimizations_ can be performed by the fram
 
 ### Communicator
 
-Represents the way _how components communicate_ with each other abstracting from the specific **protocol**.
+Represents the _communication_ between components abstracting from the specific **protocol**.
 
-The framework provides a default implementation based on [RabbitMQ](https://www.rabbitmq.com/) but other implementations can be provided.
+In-Memory & [RabbitMQ](https://www.rabbitmq.com/) communicators
 
 {{% /col %}}
 {{% /multicol %}}
@@ -244,7 +234,19 @@ The framework provides a default implementation based on [RabbitMQ](https://www.
 
 # Validation and Testing
 
-Lot of effort has been put in the **testing** and **validating** the framework.
+**Unit** and **Integration** tests for:
+
+- verifying **ComponentRef** and **Communicators** functional correctness
+- verifying the configuration produced by _configuration DSL,_ intercepting invalid usage
+- verifying the setup of **ComponentRef** and **Communicators** produced by _platform DSL_
+- Test the frame as a whole by verifying the device's _cycle_.
+
+Demos for **relevant scenarios** with physical devices:
+
+- _Moisture soil:_ the "hello world" of the pulverization showing the device decomposition
+- _hot-warm-cold_ game: main focus on device's communication and interaction
+
+<!-- Lot of effort has been put in the **testing** and **validating** the framework.
 
 An extensive test suite has been developed to ensure the functional correctness of the framework via _unit tests_ and _integration tests._
 A special focus has been put on verifying invalid configurations and scenarios that should occur using the framework.
@@ -268,15 +270,7 @@ _Moisture soil_ demo
 _Hot-warm-cold_ demo
 
 {{% /col %}}
-{{% /multicol %}}
-
----
-
-# Demo
-
-[Video in cui mostro demo crowd: da finire]
-
-{{% /section %}}
+{{% /multicol %}} -->
 
 ---
 
@@ -286,6 +280,12 @@ _Hot-warm-cold_ demo
 - **Dynamism** support: dynamic changes in the system's requirements and configuration and opportunistically exploit the best deployment strategy
 - **Automatic deployment** support: automatic deployment of the system in the available infrastructure leveraging DevOps methodologies
 - **Performance evaluation:** evaluate the framework's performance in terms of _latency_ and _throughput_ in different deployment strategy and scenarios
+
+---
+
+# Demo
+
+[Video in cui mostro demo crowd: da finire]
 
 ---
 
