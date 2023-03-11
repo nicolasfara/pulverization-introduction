@@ -57,6 +57,10 @@ section.has-light-background {
 	}
 }
 
+.reveal li, p {
+	line-height: 1.5em;
+}
+
 .reveal strong,
 .reveal b {
 	font-weight: bold;
@@ -81,10 +85,15 @@ section.has-light-background {
 
 	figure {
 		display: flex;
+		flex-direction: column;
+		align-content: center;
 		justify-content: center;
 		/* align horizontal */
 		align-items: center;
 		/* align vertical */
+	}
+	figcaption p {
+		font-size: 0.5em;
 	}
 }
 

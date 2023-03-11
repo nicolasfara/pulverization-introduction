@@ -2,116 +2,62 @@
 weight = 1
 +++
 
-# Edge-Cloud continuum
+# Overview
 
-## Opportunities and challenges
-
-The growth of the **Internet of Things** (IoT) lead to the need of transferring, processing and storing an unpredictable amount of data
-
-**Cloud computing** as an established technology for storing and processing data for a variety of application.
-Has some limitation in _real-time_ and _low-latency_ applications.
-
-**Fog computing** combines edge computing and cloud computing by utilizing _multiple layers_ of the computational infrastructure.
-
-Exploiting the **edge-cloud continuum** enables many opportunities for the _IoT_ but also presents some open challenges.
+- **Edge-cloud continuum** in CPS: _stratification_ and _heterogeneity_
+- **Pulverization** approach to tackle this complexity
+- Fill the gap between _simulation_ and _real world_
+- Design and implementation of a **framework** to support the **pulverization** approach
+- _Testing_ and _validation_ of the framework in real world scenarios
+- _Improvements_ and _future directions_ of the framework
 
 ---
 
-# Frameworks and methodologies
+# Edge-Cloud continuum
 
-Many proposal in the literature tries to handle the **edge-cloud continuum** problem.
+- Edge-Cloud systems are _layered_ and _heterogeneous_
+- They provide _opportunities_ but also _challenges_
+- Several approaches have been proposed to manage this **complexity**
 
 {{% multicol %}}
 {{% col %}}
 
-#### Osmotic computing
+#### DR-BIP & DReAM
 
-{{< figure src="images/osmotic-architecture.png" width="75%" >}}
+{{< figure src="images/motif-concept.png" caption="<b>Credits:</b> Rim El Ballouli et al. \"Four Exercises in Programming Dynamic Reconfigurable Systems: Methodology and Solution in DR-BIP\"" width="87%" >}}
 
 {{% /col %}}
 
 {{% col %}}
 
-#### DR-BIP & DReAM
+#### Osmotic Computing
 
-{{< figure src="images/motif-concept.png" width="80%" >}}
+{{< figure src="images/osmotic-architecture.png" caption="<b>Credits</b>: Massimo Villari et al. \"Osmosis: The Osmotic Computing Platform for Microelements in the Cloud, Edge, and Internet of Things\"" width="80%" >}}
 
 {{% /col %}}
 {{% /multicol %}}
-
-**Osmotic computing** main focus on distributed microservices architectures, while **DR-BIP** and **DReAM** focuses on the orchestration of distributed systems
-by dynamically adapting to the changing requirements basing the system on the _motif_ concept.
 
 ---
 
 # Pulverization approach
 
-Modern **CPS** are increasingly large, heterogeneous and dynamics which makes challenging engineering systems that can exploit _opportunistically_ the available resources.
-
-**Pulverization** address this problem by breaking down the system into _smaller computational pieces_ that are continuously executed across the available hosts.
-
-These **sub-components** can be deployed and wired separately, allowing for a _separation of concerns_ between the business logic and the deployment aspects.
-
----
-
-# Motivation
-
-- Actually the **pulverization** approach is tested only in simulation
-- The thesis work is focused on "closing the gap" between _simulation_ and _real deployments_
-- With the framework, the user can focus on the _business logic_ of the system demanding to the framework _platform-specific_ aspects
-- The **pulverization** approach born in the _aggregate computing_ context, but the framework aims to be versatile enough to allow the pulverization also in non-aggregate systems
-
----
-
-# Pulverization domain model
-
-A **logical device** represents a device in the system where its components can be deployed _independently_ on the available infrastructure.  
+Pulverization _breaks down_ the system into _smaller computational units_ that are continuously executed across the available hosts.
 
 {{% multicol %}}
-{{% col %}}
-
-A logical device is decomposed into:
-
-- **Behaviour**: the logic of the device
-- **Communication**: the way the device communicates with other devices
-- **State**: the state of the device
-- **Sensors**: the sensors of the device
-- **Actuators**: the actuators of the device
-
-{{% /col %}}
-
 {{% col %}}
 
 {{< figure src="images/framework-components-interactions.svg" >}}
 
 {{% /col %}}
-{{% /multicol %}}
-
-A _host_ represent the physical device where the components are deployed.  
-We refer with **thin host** to a host with limited resources (e.g. embedded devices).  
-A **thick host** represents a host with an high computational power (e.g. cloud).
-
----
-
-# Device's components interaction
-
-Each device performs a _MAPE-like_ cycle to achieve the device's behaviour:
-
-{{% multicol %}}
-{{% col %}}
-
-1. _Context acquisition:_ get **sensors** and **communication** data storing them in the **state**
-2. _Computation:_ compute the **behaviour** function
-3. _Coordination data propagation:_ coordination data is sento to all the neighbours
-4. _Actuation:_ the **actuators** are activated according to the prescriptive actions
-{{% /col %}}
 
 {{% col %}}
 
-{{< figure src="images/mape-cycle.svg" width="58%" >}}
+{{< figure src="images/mape-cycle.svg" width="50%" >}}
 
 {{% /col %}}
 {{% /multicol %}}
+
+This approach promotes the _deployment independence_ of the system by separating **functional aspects** from **deployment aspects**.
 
 ---
 
@@ -245,32 +191,6 @@ Demos for **relevant scenarios** with physical devices:
 
 - _Moisture soil:_ the "hello world" of the pulverization showing the device decomposition
 - _hot-warm-cold_ game: main focus on device's communication and interaction
-
-<!-- Lot of effort has been put in the **testing** and **validating** the framework.
-
-An extensive test suite has been developed to ensure the functional correctness of the framework via _unit tests_ and _integration tests._
-A special focus has been put on verifying invalid configurations and scenarios that should occur using the framework.
-
-Validation has been performed using two **relevant scenarios**: moisture soil regulation and hot-warm-cold game.
-With this two scenarios, the framework has been tested in a real environment.
-
-{{% multicol %}}
-{{% col class="text-center" %}}
-
-{{< figure src="images/demo1-physical.svg" width="60%" >}}
-
-_Moisture soil_ demo
-
-{{% /col %}}
-
-{{% col class="text-center" %}}
-
-{{< figure src="images/demo2-physical.svg" width="80%" >}}
-
-_Hot-warm-cold_ demo
-
-{{% /col %}}
-{{% /multicol %}} -->
 
 ---
 
