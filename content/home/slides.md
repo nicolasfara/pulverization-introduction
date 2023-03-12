@@ -216,7 +216,10 @@ The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
 
 # Demo
 
-[Video in cui mostro demo crowd: da finire]
+<video controls loop width="85%" >
+<source src="images/demo-pulverization-crowd.mp4" type="video/mp4" >
+Your browser does not support the video tag.
+</video>
 
 ---
 
