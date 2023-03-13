@@ -193,6 +193,96 @@ Demos for **relevant scenarios** with physical devices:
 
 ---
 
+{{% section %}}
+
+# Demo Architecture
+
+Determine the _crowding_ of devices in a room using _Bluetooth LE_ and deploying the system through the **pulverization framework.**
+
+{{% multicol %}}
+{{% col %}}
+
+<h4 class="text-center">Logical architecture</h3>
+
+{{< figure src="images/demo-logical-devices.svg" >}}
+
+{{% /col %}}
+
+{{% col %}}
+
+<h4 class="text-center">Physical architecture</h3>
+
+{{< figure src="images/demo-physical-architecture.svg" >}}
+
+{{% /col %}}
+{{% /multicol %}}
+
+---
+
+# Demo configuration
+
+```kotlin
+val config = pulverizationConfig {
+    logicalDevice("estimator") {
+        StateComponent and BehaviourComponent and
+        ActuatorsComponent and CommunicationComponent deployableOn Device
+    }
+    logicalDevice("smartphone") {
+        StateComponent and BehaviourComponent and
+        SensorsComponent and CommunicationComponent deployableOn Device
+    }
+    logicalDevice("smartphone-offloaded") {
+        StateComponent and BehaviourComponent deployableOn Cloud
+        CommunicationComponent and SensorsComponent deployableOn Device
+    }
+}
+```
+
+---
+
+# Demo platform
+
+#### Estimator platform
+
+```kotlin
+val estimatorPlatform = pulverizationPlatform(config.getDeviceConfiguration("estimator")!!) {
+    behaviourLogic(EstimatorBehaviour(), ::estimatorBehaviourLogic)
+    stateLogic(StateComponent(), ::stateComponentLogic)
+    communicationLogic(CommunicationComponent(), ::communicationComponentLogic)
+    actuatorsLogic(EstimatorActuatorsContainer(), ::estimatorActuatorLogic)
+
+    withPlatform { RabbitmqCommunicator("localhost") }
+    withRemotePlace { defaultRabbitMQRemotePlace() }
+}
+```
+
+#### Smartphone platform
+
+```kotlin
+val smartphonePlatform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
+    // behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
+    // stateLogic(StateComponent(), ::stateComponentLogic)
+    communicationLogic(CommunicationComponent(), ::communicationComponentLogic)
+    actuatorsLogic(SmartphoneActuatorsContainer(), ::smartphoneActuatorLogic)
+
+    withPlatform { RabbitmqCommunicator("localhost") }
+    withRemotePlace { defaultRabbitMQRemotePlace() }
+}
+```
+
+{{% /section %}}
+
+---
+
+# Crowd Demo
+
+<video controls loop width="85%" >
+<source src="images/demo-pulverization-crowd.mp4" type="video/mp4" >
+Your browser does not support the video tag.
+</video>
+
+---
+
 # Conclusions
 
 The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
@@ -210,15 +300,6 @@ The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
 - **Dynamism:** adapt the system opportunistically to changing requirements
 - **Automatic deployment:** DevOps methodologies for automatic system deployment
 - **Performance:** _latency_ and _throughput_ evaluation in different deployment strategy
-
----
-
-# Demo
-
-<video controls loop width="85%" >
-<source src="images/demo-pulverization-crowd.mp4" type="video/mp4" >
-Your browser does not support the video tag.
-</video>
 
 ---
 
