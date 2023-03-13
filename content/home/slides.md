@@ -109,15 +109,14 @@ _Modularity_ and _extensibility_ are the main features of the framework enabling
 
 # Configuration DSL
 
-The **pulverized system** can be defined via a dedicated _DSL_ which allows the user to specify the structure of each _device_.  
+The **system** can be defined via a dedicated _DSL_ to specify the structure of each _device_.  
 
-```kotlin{|2-5|7-10|}
+```kotlin{|2-5|6-9|}
 val configuration = pulverizationConfig {
     logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
         SensorsComponent and ActuatorsComponent deployableOn Device
     }
-
     logicalDevice("device-2") {
         CommunicationComponent and BehaviourComponent deployableOn Cloud
         ActuatorsComponent deployableOn Device
@@ -125,25 +124,18 @@ val configuration = pulverizationConfig {
 }
 ```
 
----
+Each **deployment unit** can be constructed in a _compositional_ and _declarative_ way.
 
-# Platform DSL
+```kotlin{|2-3|4-6|}
+val platform = pulverizationPlatform(config.getDeviceConfiguration("device-1")!!) {
+        behaviourLogic(SmartphoneBehaviour(), ::deviceBehaviourLogic)
+        communicationLogic(SmartphoneCommunication(), ::deviceCommunicationLogic)
+        withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
+        withRemotePlace { defaultRabbitMQRemotePlace() }
+    }
 
-The deployment requires to specify, for each device, the **deployment unit** in a _compositional_ and _declarative_ way
-
-```kotlin{|3-5|6-8|}
-suspend fun main() = coroutineScope {
-    val platform = pulverizationPlatform(config.getDeviceConfiguration("device-1")!!) {
-            behaviourLogic(SmartphoneBehaviour(), ::deviceBehaviourLogic)
-            communicationLogic(SmartphoneCommunication(), ::deviceCommunicationLogic)
-
-            withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
-            withRemotePlace { defaultRabbitMQRemotePlace() }
-        }
-
-    platform.start().joinAll()
-    platform.stop()
-}
+platform.start().joinAll()
+platform.stop()
 ```
 
 ---
