@@ -142,13 +142,12 @@ platform.stop()
 
 # Components communication
 
-<!-- To enable _intra-components communication,_ the framework provides two concepts: **ComponentRef** and **Communicator.** -->
 {{< figure src="images/componentref-communicator.svg" >}}
 
 {{% multicol %}}
 {{% col %}}
 
-### ComponentRef
+<h3 class="text-center">ComponentRef</h3>
 
 The **reference** to a component  _abstracting_ from its physical place.
 
@@ -158,7 +157,7 @@ Some _communication optimizations_ can be performed by the framework.
 
 {{% col %}}
 
-### Communicator
+<h3 class="text-center">Communicator</h3>
 
 Represents the _communication_ between components abstracting from the specific **protocol**.
 
@@ -284,7 +283,7 @@ The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
 - allowing users to focus on _functional_ aspects
 - leaving the management of _infrastructural_ aspects to the framework
 
-**Testing** and **demos** have been used to validate the _functional_ operation and to prove the _effectiveness_ in real-world scenarios.
+**Testing** and **demos** have been used to validate the _functional_ operation and to prove the _effectiveness_ with physical devices.
 
 ## Future work
 
