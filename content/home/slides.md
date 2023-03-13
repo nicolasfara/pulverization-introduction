@@ -68,7 +68,7 @@ This approach promotes the _deployment independence_ of the system by separating
 Main framework's features:
 
 - **Simple & Clean API:** easy to use
-- **Extensibility & customization:** custom user-defined components
+- **Extensibility:** custom user-defined components
 - **Flexibility:** cope with different deployments strategies
 - **Multi-platform:** multiple architectures
 
@@ -129,7 +129,7 @@ val configuration = pulverizationConfig {
 
 # Platform DSL
 
-To deploy the **pulverized system** the framework provides a _DSL_ allowing the user to specify, for each device, its **deployment unit** in a _compositional_ and _declarative_ way.
+The deployment requires to specify, for each device, the **deployment unit** in a _compositional_ and _declarative_ way
 
 ```kotlin{|3-5|6-8|}
 suspend fun main() = coroutineScope {
@@ -150,8 +150,7 @@ suspend fun main() = coroutineScope {
 
 # Components communication
 
-To enable _intra-components communication,_ the framework provides two concepts: **ComponentRef** and **Communicator.**
-
+<!-- To enable _intra-components communication,_ the framework provides two concepts: **ComponentRef** and **Communicator.** -->
 {{< figure src="images/componentref-communicator.svg" >}}
 
 {{% multicol %}}
@@ -203,7 +202,7 @@ The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
 - allowing users to focus on _functional_ aspects
 - leaving the management of _infrastructural_ aspects to the framework
 
-**Testing** and **demos** has been used to validate the _functional_ operation and to prove its the _effectiveness_ in real-world scenarios.
+**Testing** and **demos** have been used to validate the _functional_ operation and to prove the _effectiveness_ in real-world scenarios.
 
 ## Future work
 
