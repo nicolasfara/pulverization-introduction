@@ -4,7 +4,7 @@ weight = 1
 
 # Overview
 
-- **Edge-cloud continuum** in CPS: _stratification_ and _heterogeneity_
+- **Edge-cloud continuum:** _stratification_ and _heterogeneity_ complicate the deployments
 - **Pulverization** approach to tackle this complexity
 - Fill the gap between _simulation_ and _real world_
 - Design and implementation of a **framework** to support the **pulverization** approach
@@ -109,9 +109,9 @@ _Modularity_ and _extensibility_ are the main features of the framework enabling
 
 # Configuration DSL
 
-The **devices** configuration can be achieved using the following _DSL_:
+The **pulverized system** can be defined via a dedicated _DSL_ which allows the user to specify the structure of each _device_.  
 
-```kotlin{|2-5|7-9|}
+```kotlin{|2-5|7-10|}
 val configuration = pulverizationConfig {
     logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
@@ -119,7 +119,8 @@ val configuration = pulverizationConfig {
     }
 
     logicalDevice("device-2") {
-        CommunicationComponent and BehaviourComponent and ActuatorsComponent deployableOn Cloud
+        CommunicationComponent and BehaviourComponent deployableOn Cloud
+        ActuatorsComponent deployableOn Device
     }
 }
 ```
@@ -128,14 +129,13 @@ val configuration = pulverizationConfig {
 
 # Platform DSL
 
-The _DSL_ enables the user to configure the actual platform in a pure **declarative** fashion.
+To deploy the **pulverized system** the framework provides a _DSL_ allowing the user to specify, for each device, its **deployment unit** in a _compositional_ and _declarative_ way.
 
-```kotlin{|3-5|7-8|}
+```kotlin{|3-5|6-8|}
 suspend fun main() = coroutineScope {
-    val platform = pulverizationPlatform(config.getDeviceConfiguration("smartphone")!!) {
-            behaviourLogic(SmartphoneBehaviour(), ::smartphoneBehaviourLogic)
-            stateLogic(SmartphoneState(), ::smartphoneStateLogic)
-            communicationLogic(SmartphoneCommunication(), ::smartphoneCommunicationLogic)
+    val platform = pulverizationPlatform(config.getDeviceConfiguration("device-1")!!) {
+            behaviourLogic(SmartphoneBehaviour(), ::deviceBehaviourLogic)
+            communicationLogic(SmartphoneCommunication(), ::deviceCommunicationLogic)
 
             withPlatform { RabbitmqCommunicator(hostname = "rabbitmq") }
             withRemotePlace { defaultRabbitMQRemotePlace() }
@@ -150,7 +150,7 @@ suspend fun main() = coroutineScope {
 
 # Components communication
 
-To enable _intra-components communication_, the framework provides two concepts: **ComponentRef** and **Communicator**.
+To enable _intra-components communication,_ the framework provides two concepts: **ComponentRef** and **Communicator.**
 
 {{< figure src="images/componentref-communicator.svg" >}}
 
