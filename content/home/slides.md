@@ -6,7 +6,7 @@ weight = 1
 
 - **Edge-cloud continuum:** _stratification_ and _heterogeneity_ complicate the deployments
 - **Pulverization** approach to tackle this complexity
-- Fill the gap between _simulation_ and _real world_
+- Fill the gap between _simulation_ and _physical_ deployments
 - Design and implementation of a **framework** to support the **pulverization** approach
 - _Testing_ and _validation_ of the framework in real world scenarios
 - _Improvements_ and _future directions_ of the framework
@@ -91,8 +91,8 @@ _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 {{% col %}}
 The framework _modules:_
 
-- **core**: the pulverization concepts
-- **platform**: logic needed to implement a pulverized system
+- **core:** the pulverization concepts
+- **platform:** logic needed to implement a pulverized system
 - **rabbitmq-platform:** communicator based on [RabbitMQ](https://www.rabbitmq.com/)
 
 {{% /col %}}
@@ -111,15 +111,14 @@ _Modularity_ and _extensibility_ are the main features of the framework enabling
 
 The **system** can be defined via a dedicated _DSL_ to specify the structure of each _device_.  
 
-```kotlin{|2-5|6-9|}
+```kotlin{|2-5|6-8|}
 val configuration = pulverizationConfig {
     logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
         SensorsComponent and ActuatorsComponent deployableOn Device
     }
     logicalDevice("device-2") {
-        CommunicationComponent and BehaviourComponent deployableOn Cloud
-        ActuatorsComponent deployableOn Device
+        CommunicationComponent and BehaviourComponent and ActuatorsComponent deployableOn Device
     }
 }
 ```
@@ -159,7 +158,7 @@ Some _communication optimizations_ can be performed by the framework.
 
 <h3 class="text-center">Communicator</h3>
 
-Represents the _communication_ between components abstracting from the specific **protocol**.
+Represents the _communication_ between components abstracting from the specific **protocol.**
 
 In-Memory & [RabbitMQ](https://www.rabbitmq.com/) communicators
 
@@ -175,7 +174,7 @@ In-Memory & [RabbitMQ](https://www.rabbitmq.com/) communicators
 - verifying **ComponentRef** and **Communicators** functional correctness
 - verifying the configuration produced by _configuration DSL,_ intercepting invalid usage
 - verifying the setup of **ComponentRef** and **Communicators** produced by _platform DSL_
-- Test the frame as a whole by verifying the device's _cycle_.
+- Test the frame as a whole by verifying the device's _cycle._
 
 Demos for **relevant scenarios** with physical devices:
 
