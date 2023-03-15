@@ -4,10 +4,10 @@ weight = 1
 
 # Overview
 
-- **Edge-cloud continuum:** _stratification_ and _heterogeneity_ complicate the deployments
+- **Edge-cloud continuum**: _stratification_ and _heterogeneity_ complicate the deployments
 - **Pulverization** approach to tackle this complexity
 - Fill the gap between _simulation_ and _physical_ deployments
-- Design and implementation of a **framework** to support the **pulverization** approach
+- Design and implementation of a _framework_ to support the **pulverization** approach
 - _Testing_ and _validation_ of the framework in real world scenarios
 - _Improvements_ and _future directions_ of the framework
 
@@ -17,7 +17,7 @@ weight = 1
 
 - Edge-Cloud systems are _layered_ and _heterogeneous_
 - They provide _opportunities_ but also _challenges_
-- Several approaches have been proposed to manage this **complexity**
+- Several approaches have been proposed to manage this _complexity_
 
 {{% multicol %}}
 {{% col %}}
@@ -57,7 +57,7 @@ Pulverization _breaks down_ the system into _smaller computational units_ that a
 {{% /col %}}
 {{% /multicol %}}
 
-This approach promotes the _deployment independence_ of the system by separating **functional aspects** from **deployment aspects**.
+This approach promotes the **deployment independence** of the system by separating _functional aspects_ from _deployment aspects_.
 
 ---
 
@@ -68,9 +68,9 @@ This approach promotes the _deployment independence_ of the system by separating
 Main framework's features:
 
 - **Simple & Clean API:** easy to use
-- **Extensibility:** custom user-defined components
-- **Flexibility:** cope with different deployments strategies
-- **Multi-platform:** multiple architectures
+- **Extensibility**: custom user-defined components
+- **Flexibility**: cope with different deployments strategies
+- **Multi-platform**: multiple architectures
 
 {{% /col %}}
 
@@ -91,9 +91,9 @@ _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 {{% col %}}
 The framework _modules:_
 
-- **core:** the pulverization concepts
-- **platform:** logic needed to implement a pulverized system
-- **rabbitmq-platform:** communicator based on [RabbitMQ](https://www.rabbitmq.com/)
+- **core**: the pulverization concepts
+- **platform**: logic needed to implement a pulverized system
+- **rabbitmq-platform**: communicator based on [RabbitMQ](https://www.rabbitmq.com/)
 
 {{% /col %}}
 
@@ -158,7 +158,7 @@ Some _communication optimizations_ can be performed by the framework.
 
 <h3 class="text-center">Communicator</h3>
 
-Represents the _communication_ between components abstracting from the specific **protocol.**
+Represents the **communication** between components abstracting from the specific _protocol_.
 
 In-Memory & [RabbitMQ](https://www.rabbitmq.com/) communicators
 
@@ -169,17 +169,16 @@ In-Memory & [RabbitMQ](https://www.rabbitmq.com/) communicators
 
 # Validation and Testing
 
-**Unit** and **Integration** tests for:
+_Unit_ and _integration_ tests for:
 
-- verifying **ComponentRef** and **Communicators** functional correctness
-- verifying the configuration produced by _configuration DSL,_ intercepting invalid usage
-- verifying the setup of **ComponentRef** and **Communicators** produced by _platform DSL_
-- Test the frame as a whole by verifying the device's _cycle._
+- Verifying functional correctness of **pulverization concepts** modelled in the framework
+- Verifying the _DSL_ configuration, intercepting invalid usage
+- Verifying the framework as a whole to be consistent with the **pulverization** formalization
 
 Demos for **relevant scenarios** with physical devices:
 
-- _Moisture soil:_ the "hello world" of the pulverization showing the device decomposition
-- _hot-warm-cold_ game: main focus on device's communication and interaction
+- _Moisture soil_: the "hello world" of the pulverization showing the device decomposition
+- _Hot-warm-cold_ game: main focus on device's communication and interaction
 
 ---
 
@@ -187,7 +186,7 @@ Demos for **relevant scenarios** with physical devices:
 
 # Demo Architecture
 
-Determine the _crowding_ of devices in a room using _Bluetooth LE_ and deploying the system through the **pulverization framework.**
+Determine the _crowding_ of devices in a room using _Bluetooth LE_ and deploying the system through the **pulverization framework**.
 
 {{% multicol %}}
 {{% col %}}
@@ -207,7 +206,7 @@ Determine the _crowding_ of devices in a room using _Bluetooth LE_ and deploying
 {{% /col %}}
 {{% /multicol %}}
 
----
+<!-- ---
 
 # Demo configuration
 
@@ -258,7 +257,7 @@ val smartphonePlatform = pulverizationPlatform(config.getDeviceConfiguration("sm
     withPlatform { RabbitmqCommunicator("localhost") }
     withRemotePlace { defaultRabbitMQRemotePlace() }
 }
-```
+``` -->
 
 {{% /section %}}
 
@@ -277,19 +276,20 @@ Your browser does not support the video tag.
 
 The framework try to tackle _edge-cloud continuum_ complexity in CPS by:
 
-- providing _clean_ and _effective_ API with _multiplatform_ support
-- promoting _reusability_ and _independency_ from underlying infrastructure
-- allowing users to focus on _functional_ aspects
-- leaving the management of _infrastructural_ aspects to the framework
+- Providing _clean_ and _effective_ API with _multiplatform_ support
+- Promoting _reusability_ and _independency_ from underlying infrastructure
+- Separating _functional_ aspects from _infrastructural_ ones
 
-**Testing** and **demos** have been used to validate the _functional_ operation and to prove the _effectiveness_ with physical devices.
+Testing and demos have been used to validate the _functional_ operation and to prove the _effectiveness_ with physical devices.
 
-## Future work
+---
 
-- **Multi-protocol:** best protocol based on device's capabilities and required QoS
-- **Dynamism:** adapt the system opportunistically to changing requirements
-- **Automatic deployment:** DevOps methodologies for automatic system deployment
-- **Performance:** _latency_ and _throughput_ evaluation in different deployment strategy
+# Future work
+
+- **Multi-protocol**: best protocol based on device's capabilities and required QoS
+- **Dynamism**: adapt the system opportunistically to changing requirements
+- **Automatic deployment**: DevOps methodologies for automatic system deployment
+- **Performance**: _latency_ and _throughput_ evaluation in different deployment strategy
 
 ---
 
