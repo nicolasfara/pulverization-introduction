@@ -89,7 +89,7 @@ _JVM, Android, JS, iOS, Linux, macOS,_ and _Windows_.
 
 {{< multicol >}}
 {{% col %}}
-The framework _modules:_
+The framework _modules_:
 
 - **core**: the pulverization concepts
 - **platform**: logic needed to implement a pulverized system
