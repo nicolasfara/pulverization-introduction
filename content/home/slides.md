@@ -107,12 +107,12 @@ _Modularity_ and _extensibility_ are the main features of the framework enabling
 
 ---
 
-# Configuration DSL
+# Framework's DSLs
 
 The **system** can be defined via a dedicated _DSL_ to specify the structure of each _device_.  
 
 ```kotlin{|2-5|6-8|}
-val configuration = pulverizationConfig {
+val config = pulverizationConfig {
     logicalDevice("device-1") {
         BehaviourComponent and CommunicationComponent deployableOn Cloud
         SensorsComponent and ActuatorsComponent deployableOn Device
