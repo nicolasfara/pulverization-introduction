@@ -15,11 +15,28 @@ weight = 1
 
 # Edge-Cloud continuum
 
-- Edge-Cloud systems are _layered_ and _heterogeneous_
-- They provide _opportunities_ but also _challenges_
-- Several approaches have been proposed to manage this _complexity_
+Edge-Cloud systems are _layered_ and _heterogeneous_.  
+This infrastructures provide _opportunities_ but also _challenges_.
 
 {{% multicol %}}
+{{% col %}}
+
+- **Cloud**: high _scalability_ and _power_ but _latency_ issues
+- **Fog**: hierarchical _architecture_ near the edge devices
+- **Edge**: _low latency_ but _limited computational power_
+
+{{% /col %}}
+
+{{% col %}}
+
+{{< figure src="images/cloud-fog-edge.svg" >}}
+
+{{% /col %}}
+{{% /multicol %}}
+
+Several approaches have been proposed in literature to manage this _complexity_.
+
+<!-- {{% multicol %}}
 {{% col %}}
 
 #### DR-BIP & DReAM
@@ -35,7 +52,7 @@ weight = 1
 {{< figure src="images/osmotic-architecture.png" caption="<b>Credits</b>: Massimo Villari et al. \"Osmosis: The Osmotic Computing Platform for Microelements in the Cloud, Edge, and Internet of Things\"" width="80%" >}}
 
 {{% /col %}}
-{{% /multicol %}}
+{{% /multicol %}} -->
 
 ---
 
